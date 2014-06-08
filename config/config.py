@@ -5,6 +5,9 @@
         ('longtable', ''),
         ],
     # style.sty options
+    'bibliography_resources': [
+        '../content/bibliography.bib',
+        ],
     # other options
     'git': [
         ('dump_log', {
