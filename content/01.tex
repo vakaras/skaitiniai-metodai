@@ -1,0 +1,161 @@
+\Chapter{Kompiuterių aritmetika ir algoritmai}
+% 2014-02-04
+
+Šio kurso pavadinimas „Skaitiniai metodai“ yra angliško termino
+„Scientific Computing” atitikmuo. Skaitiniais metodais yra
+sprendžiami matematinio modeliavimo uždaviniai, kurie yra užrašyti
+algebrinėmis formulėmis (kurias galima įvykdyti kompiuteriu).
+
+Šiuo kursu siekiama išmokti:
+\begin{enumerate}
+  \item suformuluoti sprendimo metodiką;
+  \item įvertinti metodo tinkamumą, jo privalumus ir trūkumus\footnote{Yra
+    labai svarbu sugebėti įvertinti paklaidas. Tai yra, atsakyti
+    į klausimą su kokia paklaida buvo išspręstas uždavinys.}
+\end{enumerate}
+\begin{note}
+  \TODO{Išversti.}
+  Simulation techniques aim at:
+  \begin{itemize}
+    \item Solving the right equations!
+    \item Solving the equations right!
+    \item Solving the equations fast!
+  \end{itemize}
+\end{note}
+
+\TODO{\slide{3-6}}
+
+\TODO{\slide{7-8}}
+Ketvirtosios eilės daugianaris yra aukščiausios eilės daugianaris,
+kurio sprendinį visada galima rasti analiziniais metodais (rąstas
+sprendinys būtų tikslus). Taigi ketvirtosios eilės daugianario
+tikslių šaknų radimo uždavinys iš esmės skiriasi nuo penktos
+eilės daugianario šaknų radimo uždavinio. Jei norime rasti tik apytiksles
+šaknis, tai esminių skirtumų tarp šių uždavinių nebelieka.
+
+Pavyzdžiai problemų, kurios gali būti išspręstos panaudojant \emph{baigtinį skaičių
+elementariųjų operacijų}:
+\begin{enumerate}
+  \item ketvirto ir žemesnio laipsnio daugianario šaknies radimas;
+  \item tiesinių lygčių sistemos;
+  \item tiesinis optimizavimas;
+  \item keliaujančio pirklio uždavinys.
+\end{enumerate}
+Pavyzdžiai problemų, kurios negali būti išspręstos šiuo būdu:
+\begin{enumerate}
+  \item tikrinės reikšmės radimas $n \times n$ matricai;
+  \item kelių kintamųjų funkcijos minimizavimas;
+  \item integralo apskaičiavimas;
+  \item paprastosios diferencialinės lygties sprendimas;
+  \item dalinių išvestinių lygties sprendimas.
+\end{enumerate}
+
+\begin{note}
+  Tai, kad uždavinys priklauso pirmajai grupei, dar nereiškia, kad jis yra
+  lengvesnis. Pavyzdžiui, algoritmas randantis tikslų keliaujančio pirklio
+  uždavinio sprendinį yra nepritaikomas, kai $N$ yra didelis.
+\end{note}
+
+\TODO{\slide{9}}
+
+\TODO{\slide{10}}
+\begin{defn}[Matematinis modeliavimas]
+  Taikomosios matematikos dalis, skirta įvairių sričių (fizikinių, biologinių,
+  cheminių, ekonominių ir t.t.) uždavinių sprendimui naudojant virtualiojo
+  eksperimento metodiką.
+\end{defn}
+Galimi uždavinio sprendimo įrankiai:
+\begin{itemize}
+  \item analiziniai metodai – galima rasti tikslų sprendinį;
+  \item artutiniai metodai – ieškoma artimų sprendinių;
+  \item skaitiniai metodai – tolydų keičiame diskrečiu;
+  \item statistiniai metodai;
+  \item grafikai;
+  \item t. t.
+\end{itemize}
+
+\TODO{\slide{11-12}}
+Matematinių uždavinių sprendimo etapai:
+\begin{enumerate}
+  \item Matematinis modeliavimas yra naudojamas sprendžiant
+    taikomuosius arba fizikinius uždavinius. Sudarant matematinį
+    modelį yra siekiama supaprastinti realų reiškinį atsisakant
+    nereikalingų dalių, bet paliekant visas esmines. Sudarant modelį
+    turi dalyvauti visų sričių specialistai.
+  \item Parenkame skaitinį metodą.
+  \item Suprogramuojame.
+  \item Tikriname gautus rezultatus ir jei kažkas blogai, grįžtame atgal.
+\end{enumerate}
+
+\TODO{\slide{13-16}}
+Renkantis skaitinį metodą yra atsižvelgiama į šias jų savybės:
+\begin{enumerate}
+  \item konvergavimas į sprendinį – kuo daugiau taškų imame, tuo sprendinys
+    turi būti arčiau tikrojo;
+  \item konservatyvumas;
+  \item korektiškumas;
+  \item realizavimo galimybės.
+\end{enumerate}
+Algoritmas turi būti stabilus: jei pradinės sąlygos arti, tai ir rezultatas
+turi būti arti.
+
+\TODO{\slide{17-20}}
+Paklaidų šaltiniai ir klasifikacija:
+\begin{enumerate}
+  \item Matematinio modelio paklaida. Atsiranda dėl atmestų faktorių.
+  \item Metodo paklaida. Atsiranda dėl įtrauktų į modelį faktorių.
+  \item Apvalinimo paklaida. Atsiranda dėl uždavinio sąlygotumo, jautrumo
+    ir algoritmo stabilumo.
+\end{enumerate}
+
+\TODO{\slide{21-22}}
+Matematinio modelio paklaida (dėl atmestų faktorių):
+\begin{itemize}
+  \item netikslus uždavinio matematinis aprašymas;
+  \item duomenų paklaida.
+\end{itemize}
+Ši paklaida dar vadinama nepašalinamąja paklaida. Tokios paklaidos
+atsiranda, nes pereinam nuo konkretaus uždavinio prie modelio. Šiame
+kurse modelio paklaidos nėra nagrinėjamos, nes mes su jomis nelabai
+ką galime padaryti. Nagrinėjame skaičiavimo metodų paklaidas.
+
+\TODO{\slide{23}}
+Metodo paklaida (dėl įtrauktų į modelį faktorių). Metodo paklaida
+atsiranda dėl perėjimo nuo tolydžios sistemos prie diskrečios.
+Metodo paklaidas galime valdyti, tačiau nėra prasmės skaičiuoti
+tiksliau nei modelio paklaida.
+
+\TODO{\slide{24}}
+Apvalinimo paklaida (uždavinio sąlygotumas, jautrumas, algoritmo stabilumas):
+\begin{itemize}
+  \item įvedant duomenis;
+  \item atliekant aritmetinius veiksmus;
+  \item išvedant duomenis.
+\end{itemize}
+Kitaip dar vadiname skaičiuojamąja paklaida.
+
+\TODO{\slide{25-28}}
+\begin{prop}
+  Dviejų apytikslių skaičių sumos ar skirtumo absoliučioji paklaida yra ne
+  didesnė už tų skaičių absoliučiųjų paklaidų sumą.
+\end{prop}
+\TODO{\slide{29-30}}
+\begin{prop}
+  Dviejų apytikslių skaičių sandaugos ar dalmens santykinė paklaida yra ne
+  didesnė už tų skaičių santykinių paklaidų sumą.
+\end{prop}
+
+\TODO{\slide{29-30}}
+Paklaidos taip pat atsiranda dėl to, kaip kompiuteriai saugo
+realiuosius skaičius.
+
+\TODO{\slide{31-38}}
+Siekiant išvengti didelių skaičiavimo paklaidų, algoritmą reikia sudaryti
+taip, kad:
+\begin{enumerate}
+  \item Nebūtų atimami dideli (palyginus su gautu skirtumu) artimi skaičiai.
+  \item Nebūtų dalybos iš mažo skaičiaus.
+  \item Skaičiai būtų sudedami jų didėjimo tvarka.
+\end{enumerate}
+
+\TODO{\slide{39-44}}
