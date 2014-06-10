@@ -1,0 +1,436 @@
+\Chapter{Interpoliavimas}
+
+% 2014-02-25
+
+\section{Duomenų aproksimavimas}
+
+\TODO{\slide{2}}
+
+Tegul funkcijos $f$ reikšmės žinomos tik kai kuriuose pasirinktuose
+taškuose (pavyzdžiui, tai yra matavimo rezultatai). Tikslas yra
+sukonstruoti tolydžią funkciją, kuri leidžia apytiksliai nustatyti
+funkcijos $f$ tarpines reikšmes iš žinomų jos reikšmių, arba
+aproksimuoti funkciją $f$ kita paprastesnio pavidalo funkcija $g$, kuri
+naudojama kaip jos pakaitalas, pavyzdžiui, integravimo uždaviniuose.
+
+Metodai:
+\begin{itemize}
+  \item Mažiausių kvadratų metodas – minimizuojamas atstumas nuo
+    duotųjų taškų iki kreivės. Jį patartina naudoti, kai pradiniai
+    taškai yra apytiksliai (gali turėti matavimo paklaidą).
+  \item Interpoliavimas funkcijomis – kreivė eina tiksliai per duotus
+    taškus.
+\end{itemize}
+
+\TODO{\slide{3}}
+
+Aproksimuojančios kreivės:
+\begin{itemize}
+  \item Regresija (mažiausių kvadratų metodas).
+  \item Tiesinis interpoliavimas – taškai sujungiami tiesiomis atkarpomis.
+  \item Interpoliavimas splainais – funkcija ir jos išvestinė yra tolydžios.
+\end{itemize}
+
+\TODO{\slide{4-7}}
+
+\TODO{\slide{8}}
+
+Bitiesinis interpoliavimas: imame informaciją iš virš, žemiau,
+kairiau, dešiniau esančių pikselių.
+
+Bikubinis interpoliavimas: imame informaciją papildomai iš virš kairiau, virš,
+virš dešiniau, … esančių pikselių.
+
+\TODO{\slide{9}}
+
+%Toliau žymėjimas skaidrėse: $y$ reiškia tą patį kaip ir $f(x)$.
+
+Interpoliavimas daugianariais:
+\begin{enumerate}
+  \item Atkarpos jungia du taškus.
+  \item Kvadratinė parabolė eina per tris taškus.
+  \item Kubinė parabolė eina per keturis taškus.
+\end{enumerate}
+
+\TODO{\slide{10}}
+
+%$n$ – daugianario laipsnis, 1, 2 arba 3.
+
+%$L_{n}(x_{0}) = f(x_{0})$  – sudaryta funkcija turi įgyti žinomas reikšmes
+%sąlygose duotuose taškuose.
+
+Jei yra žinoma $n+1$ funkcijos $f(x)$ reikšmė, tai galima sudaryti $n$-ojo
+laipsnio interpoliacinį daugianarį:
+\begin{equation*}
+  L_{n}(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x + x_{0}.
+\end{equation*}
+
+\TODO{\slide{11}}
+
+%Apsimoka tik tada, kai n nedidesnis nei 5 arba 6; arba kai žinome, kad ieškome
+%daugianario.
+
+\TODO{\slide{12}}
+
+%Iš interpoliavimo sąlygų gauname lygčių sistemą.
+
+%Galime išspręsti lygčių sistemą tik tada kai determinantas 0.
+
+%Kadangi pas mus uždavinys sudarytas taip, kad x yra skirtingi, tai iš to
+%išplaukia, kad egzistuoja vienintelis sprendinys.
+
+\section{Tiesinis interpoliavimas}
+
+\cite[158-163]{textbook}
+
+\TODO{\slide{13}}
+
+\begin{defn}[Tiesinis interpoliacinis daugianaris]
+  \begin{equation*}
+    L_{1}(x) = f(x_{1}) + \frac{f(x_{2} - f(x_{1}))}{x_{2} - x_{1}}(x - x_{1})
+  \end{equation*}
+\end{defn}
+
+\TODO{\slide{14}}
+
+%Pavyzdys: tiriama funkcija $e^{x}$.
+
+\TODO{\slide{15}}
+
+%Žalia – kai interpoliavimui naudojame taškus $(1, e^{1})$ ir $(5, e^{5})$.
+%Raudona – kai interpoliavimui naudojame taškus
+% $(1,5; e^{1,5})$ ir $(2,5; e^{2,5})$
+
+\TODO{\slide{16}}
+
+\note{Susitarimas: Jeigu mes vertiname antrą išvestinę, tai konstanta
+imame $M_{2}$, jei trečios, tai $M_{3}$ ir t. t.}
+
+\begin{prop}[Paklaidos įvertis]
+  Jei funkcijos $f(x)$ antroji išvestinė intervale
+  $\left[ x_{i}; x_{i+1} \right]$ yra aprėžta, tai yra:
+  \begin{equation*}
+    |f''(x)| \leq M_{2}, \t{ kai } x_{i} < x < x_{i+1},
+  \end{equation*}
+  tai tiesinio interpoliavimo paklaida įvertinama nelygybe:
+  \begin{equation*}
+    |f(x) - L_{1}(x)| \leq \frac{1}{2}M_{2}|(x-x_{i})(x-x_{i+1})|
+    \leq \frac{1}{2}M_{2}h_{i}^{2},
+  \end{equation*}
+  čia:
+  \begin{align*}
+    h_{i} &= x_{i+1} - x_{i}, \\
+    x \in \left[ x_{i}; x_{i+1} \right].
+  \end{align*}
+\end{prop}
+
+\TODO{\slide{17-19}}
+
+%Esmė: įrodėme bet kokiam taškui, tai iš to išplaukia, kad visiems taškams.
+
+\section{Skirtumų santykio formulės ir skirtumų lentelės sudarymas}
+
+\cite[163]{textbook}
+
+\TODO{\slide{20}}
+
+Kadangi $f(x)$ nėra žinoma, tai tiksli konstanta $M_{2}$ įvertyje
+\begin{equation*}
+  |f''(x)| \leq M_{2}
+\end{equation*}
+irgi nėra žinoma. Todėl reikia turėti bent apytikslę antros eilės išvestinės
+reikšmę.
+
+\TODO{\slide{21}}
+
+\begin{defn}[Pirmosios eilės skirtumų santykis]
+  \begin{equation*}
+    f(x_{i}, x_{i+1}) = \frac{f(x_{i+1}) - f(x_{i})}{x_{i+1} - x_{i}}
+  \end{equation*}
+  \note{Pirmosios eilės skirtumų santykis yra išvestinės artinys.}
+\end{defn}
+
+\begin{defn}[Antrosios eilės skirtumų santykis]
+  \begin{equation*}
+    f(x_{i},x_{i+1},x_{i+2})
+      = \frac{f(x_{i+1},x_{i+2})-f(x_{i},x_{i+1})}{x_{i+2}-x_{i}}
+  \end{equation*}
+  \note{Antrosios eilės skirtumų santykis yra antros išvestinės artinys.}
+\end{defn}
+
+\begin{defn}[$n$-osios eilės skirtumų santykis]
+  \begin{equation*}
+    f(x_{0},x_{1},\ldots,x_{n})
+      = \frac{f(x_{1},\ldots,x_{n})-f(x_{0},\ldots,x_{n-1})}{x_{n}-x_{0}}
+  \end{equation*}
+  \note{$n$-osios eilės skirtumų santykis yra $n$-osios išvestinės artinys.}
+\end{defn}
+
+\TODO{\slide{22}}
+
+\TODO{\slide{23}}
+
+Paklaidos įverčio formulėje vietoj $M_{2}$ galima naudoti apytikslį antrosios
+išvestinės rėžį:
+\begin{equation*}
+  f''(x) \approx 2f(x_{i}, x_{i+1}, x_{i+2}).
+\end{equation*}
+
+Bendruoju atveju:
+\begin{equation*}
+  f^{(n)}(x) \approx n!f(x_{0},x_{1},\ldots,x_{n}).
+\end{equation*}
+
+\section{Kvadratinis interpoliavimas}
+
+\cite[165-167]{textbook}
+
+\TODO{\slide{24}}
+
+Kvadratiniam interpoliavimui reikalingi trys interpoliavimo mazgai.
+Taškai yra jungiami parabole.
+\begin{equation*}
+  L_{2}(x) = b_{1} + b_{2}(x-x_{1}) + b_{3}(x-x_{1})(x - x_{2})
+\end{equation*}
+
+%Raudona – nežinoma funkcija.
+%Mėlyna – parabolė.
+%$L_{2}(x)$ skiriasi nuo $L_{1}$ tuo, kad pridėjome vieną papildomą narį.
+
+\TODO{\slide{25}}
+
+\TODO{\slide{26}}
+Kvadratinio interpoliavimo koeficientų radimas:
+\begin{equation*}
+  L_{2}(x)
+    = f(x_{1})
+    + f(x_{1},x_{2})(x-x_{1})
+    + f(x_{1},x_{2},x_{3})(x-x_{1})(x-x_{2})
+\end{equation*}
+
+\TODO{\slide{27-29}}
+
+\TODO{\slide{30}}
+\begin{prop}
+  Jei funkcijos $f(x)$ trečiosios eilės išvestinė intervale
+  $\left[ x_{i}; x_{i+2} \right]$ yra apibrėžta:
+  \begin{equation*}
+    |f'''(x)| \leq M_{3}, \t{ kai } x_{i} < x < x_{i+2},
+  \end{equation*}
+  tai kvadratinio interpoliavimo paklaida įvertinama nelygybe:
+  \begin{equation*}
+    |f(x) - L_{2}(x)|
+      \leq \frac{1}{6}M_{3}|(x-x_{i})(x-x_{i+1})(x-x_{i+2})|
+      \leq \frac{\sqrt(3)}{27}M_{3}h^{3},
+  \end{equation*}
+  čia:
+  \begin{align*}
+    h &= \max \left\{ x_{i+1} - x_{i}; x_{i+2} - x_{i+1} \right\} \\
+    x &\in \left[ x_{i}; x_{i+2} \right] \\
+  \end{align*}
+\end{prop}
+
+\TODO{\slide{31}}
+
+\section{Niutono interpoliacinis daugianaris}
+
+\cite[168-169]{textbook}
+
+\TODO{\slide{32}}
+
+Niutono interpoliacinė formulė yra tiesinio ir kvadratinio interpoliavimo
+formulių apibendrinimas bet kokiam $n$.
+
+\begin{defn}[Niutono interpoliacinė formulė]
+  \begin{align*}
+    L_{n}(x)
+      &= f(x_{0}) \\
+      &+ f(x_{0},x_{1})(x - x_{0}) \\
+      &+ f(x_{0},x_{1},x_{2})(x-x_{0})(x-x_{1}) \\
+      &+ \cdots \\
+      &+ f(x_{0},x_{1},\ldots,x_{n})(x-x_{0})(x-x_{1})\cdots(x-x_{n-1}) \\
+  \end{align*}
+\end{defn}
+\begin{itemize}
+  \item Jei yra žinoma užtektinai funkcijos $f(x)$ reikšmių, tai šią formulę
+    legvai galima papildyti naujais nariais ir kartu padidinti jos „tikslumą“.
+  \item Interpoliavimo taškai $x_{i}$ gali būti pasiskirstę kaip tolygiai,
+    taip ir netolygiai, juos galima sunumeruoti bet kokia tvarka.
+\end{itemize}
+
+\TODO{\slide{33}}
+
+\TODO{\slide{34}}
+
+%Skaičiuojame taip, kaip yra sunumeruoti taškai. Nesvarbu, kad jie gali būti
+%sunumeruoti kita tvarka.
+
+\TODO{\slide{33-35}}
+
+\TODO{\slide{36}}
+
+\begin{prop}
+  Jei $(n+1)$-osios eilės funkcijos $f(x)$ išvestinė intervale
+  $\left[ x_{0}; x_{n} \right]$ yra apibrėžta:
+  \begin{equation*}
+    |f^{n+1}(x)| \leq M_{n+1}, \t{ kai } x_{0} < x < x_{n},
+  \end{equation*}
+  tai Niutono interpoliacinės formulės interpoliavimo paklaida įvertinama
+  nelygybe:
+  \begin{equation*}
+    |f(x) - L_{n}(x)|
+      \leq \frac{1}{(n+1)!}M_{n+1}|(x-x_{0})(x-x_{1})\cdots(x-x_{n}),
+  \end{equation*}
+  čia $x \in \left[ x_{0}; x_{n} \right]$.
+  \begin{proof}
+    \TODO{Įrodymas analogiškas tiesiniam atvejui, tik ši seka bus
+    daug ilgesnė.}
+  \end{proof}<++>
+\end{prop}
+\TODO{\slide{37}}
+Išvados:
+\begin{enumerate}
+  \item Interpoliacinio daugianario laipsnį didinti tikslinga, kai:
+    \begin{equation*}
+      \frac{M_{n+1}}{(n+1)}|(x-x_{n})| \leq M_{n}.
+    \end{equation*}
+  \item Interpoliavimo paklaida priklauso nuo interpoliavimo mazgų
+    $(x_{0},x_{1},\ldots,x_{n})$ išsidėstymo. Jie turi būti kuo arčiau
+    interpoliavimo taško $x$ ir išsidėstę kuo simetriškiau jo atžvilgiu.
+\end{enumerate}
+
+\TODO{\slide{38}}
+
+%$(2n - 1)!! = 1 \cdot 3 \cdot 5 \cdot \cdots \cdot (2n - 1)$
+%$(2n)!! = 2 \cdot 4 \cdot 6 \cdots 2n$
+
+\TODO{\slide{39}}
+
+Niutono interpoliacinės formulės paklaida:
+\begin{equation*}
+  |f(x) - L_{n}(x)|
+    \approx f(x,x_{0},x_{1},\ldots,x_{n})|(x-x_{0})(x-x_{1})\cdots(x-x_{n})|,
+\end{equation*}
+čia:
+\begin{equation*}
+  x \in \left[ \min_{i=0,\ldots,n}x_{i}; \max_{i=0,\ldots,n}x_{i} \right].
+\end{equation*}
+Kai atstumai tarp taškų maži (šiuo atveju išnaudojame ne visus taškus, o
+pasiliekame vieną tašką paklaidos įvertinimui):
+\begin{equation*}
+  f(x,x_{0},x_{1},\ldots,x_{n})
+    \approx \frac{f^{n+1}(x)}{(n+1)!}
+    \approx f(x_{0},x_{1},\ldots,x_{n},x_{n+1})
+\end{equation*}
+
+\section{Ekstrapoliavimas}
+
+\TODO{\slide{40}}
+
+\begin{defn}[Ekstrapoliavimas]
+  Funkcijos nežinomų reikšmių nustatymas taške, nepriklausančiame žinomų
+  taškų intervalui.
+\end{defn}
+
+Interpoliavimą galimą taikyti tik vidinių taškų reikšmių
+skaičiavimui. Išoriniams taškams reikia naudoti ektrapoliavimą.
+
+\TODO{\slide{41}}
+
+\TODO{\slide{42}}
+
+Interpoliavimas netinka kai:
+\begin{itemize}
+  \item Duomenys su dideliu gradientu\footnote{Išvestinės vektorius.}
+    (lygus grafikas su staigiu piku).
+  \item Duomenys su triukšmu.
+\end{itemize}
+Tokiais atvejais atsiranda osciliacijos.
+
+%TODO: Pasiieškoti Karlos Rungė. (Yra dar garsi fizikė Rungė.)
+
+\TODO{\slide{43}}
+
+\section{Lagranžo interpoliacinis daugianaris}
+
+\TODO{\slide{44}}
+
+Be Niutono interpoliacinio daugianario, dar naudojamas Lagranžo
+interpoliacinis daugianaris. Lagranžo daugianaris iš esmės yra toks
+pats kaip Niutono, tik jo nariai yra kitaip sugrupuoti. Lagranžo yra
+patogesnis įrodymas, o praktikoje patogesnis yra Niutono.
+\begin{align*}
+  L_{n}(x)
+    &= c_{0}(x)f(x_{0}) + \cdots + c_{n}(x)f(x_{n}) \\
+    &= \sum_{i=0}^{n}c_{i}(x)f(x_{i}) \\
+\end{align*}
+Čia:
+\begin{align*}
+  c_{i}(x)
+  &= \prod_{j=0,j \neq i}^{n}\frac{x-x_{j}}{x_{i}-x_{j}} \\
+  &= \frac{P_{i}(x)}{P_{i}(x_{i})} \\
+  &= \frac{(x-x_{0})\cdots(x-x_{i-1}(x-x_{i+1}))\cdots(x-x_{n})}
+          {(x_{i}-x_{1})\cdots(x_{i}-x_{i-1})(x_{i}-x_{i+1})\cdots(x_{i}-x_{n})}
+\end{align*}
+
+\TODO{\slide{45-46}}
+
+\TODO{\slide{47}}
+
+Lagranžo interpoliavimas yra patogus, jei skaičiuojama naudojant tuos
+pačius $x$ su skirtingais $y$ (tai yra, kai matavimai yra atliekami
+tuose pačiuose taškuose), nes koeficientus $c_{k}(x)$ reikia
+apskaičiuoti tik vieną kartą. Tačiau, jis yra mažiau patogus, jei
+atsiranda papildomi duomenų taškai.
+
+\TODO{\slide{48}}
+
+\section{Atvirkštinis interpoliavimas}
+
+\TODO{\slide{49}}
+
+Žinomos $x$ ir $f(x)$ reikšmės:
+\begin{itemize}
+  \item Tiesioginis interpoliavimas leidžia apskaičiuoti $f(x)$ reikšmes
+    gaunant naujas $x$ reikšmes.
+  \item Atvirkštinis interpoliavimas leidžia apskaičiuoti $x$ reikšmes
+    gaunant naujas $f(x)$ reikšmes. Kitaip tariant ieškome ne $f(x)$ kažkokiame
+    taške $x$, o $x$ kuriame $f(x) = T$, kur $T$ yra kažkokia konstanta.
+\end{itemize}
+
+Atvirkštinio interpoliavimo idėjos:
+\begin{enumerate}
+  \item Sukeičiame vietomis $x$ ir $f(x)$ ir interpoliuojame. Bet
+    netolygusis reikšmių $f(x_{i})$ pasiskirstymas dažnai duoda
+    osciliuojantį interpoliacinį daugianarį.
+  \item Sudorome $n$-ojo laipsnio interpoliacinį daugianarį
+    aproksimuojantį pradinius duomenis $(x_{i},f(x_{i}))$, po to $x$
+    randame spręsdami netiesinę lygtį. Šiuo atveju gali būti sąlygotas
+    uždavinys.
+\end{enumerate}
+
+\TODO{\slide{50-52}}
+
+
+%\section{3p}
+%\cite[161]{textbook}
+%\section{4p}
+%\cite[162]{textbook}
+%\section{7p}
+%\cite[163]{textbook}
+%\section{1T}
+%\cite[161]{textbook}
+%\section{9p}
+%\cite[166]{textbook}
+%\section{2T}
+%\cite[167]{textbook}
+%\section{1,2p}
+%\cite[160]{textbook}
+%\section{5,6p}
+%\cite[163]{textbook}
+%\section{8p}
+%\cite[166]{textbook}
+%\section{10p}
+%\cite[167]{textbook}
+%\section{11p}
+%\cite[167]{textbook}
