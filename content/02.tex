@@ -1,0 +1,589 @@
+\Chapter{Netiesinių lygčių sprendimas}
+% 2014-02-11
+
+\cite[16-18]{textbook}
+
+Tiesinių lygčių sistemos dažnai pakankamai gerai aprašo praktinius
+uždavinius. Tačiau, egzistuoja tiesinių lygčių sistemų taikymo
+riba.
+
+\begin{exmp}
+  Populiacijos augimo modelis aprašomas lygtimi:
+  \begin{equation*}
+    x(t) = x_{0}e^{At},
+  \end{equation*}
+  čia:
+  \begin{itemize}
+    \item $t$ – laikas,
+    \item $x_{0}$ – pradinis populiacijos dydis,
+    \item $A$ – populiacijos augimo greitis (konstanta).
+  \end{itemize}
+
+  Šią lygtį galima išspręsti analiziniais metodais. Tarkime, kad reikia
+  nustatyti kada pelių populiacija pasieks…\TODO{\slide{4}}
+\end{exmp}
+
+\TODO{\slide{5}}
+Netiesinių lygčių uždavinio formuluotė:
+\begin{equation*}
+  f(x) = 0
+\end{equation*}
+Šis uždavinys dažnai pasitaiko moksliniuose skaičiavimuose. Jis bendru
+atveju negali būti išspręstas atliekant baigtinį veiksmų skaičių.
+
+
+\TODO{\slide{6}}
+Prieš pradedant ieškoti lygties sprendinio skaitiniu metodu, reikia
+atskirti šaknis ir parinkti pradinį artinį. Tai galima padaryti šiais
+metodais:
+\begin{itemize}
+  \item grafiniu šaknų atskyrimo metodu;
+  \item monotoniškumo intervalų metodu;
+  \item intervalo skaidos metodu.
+\end{itemize}
+
+\TODO{\slide{6}}
+Netiesinių lygčių sprendimo metodus galima suskirstyti į dvi grupes:
+\begin{itemize}
+  \item reikalaujantys pradinio intervalo parinkimo metodai (mes turim
+    garantuoti, kad tame intervale egzistuoja sprendinys);
+  \item nereikalaujantys pradinio intervalo parinkimo metodai.
+\end{itemize}
+
+Pusiaukirtos metodas priklausančio pirmajai grupei privalumas yra tai,
+kad jis visada konverguoja į sprendinį. Tačiau, šis algoritmas konverguoja
+lėtai.
+
+Antrosios grupės metodai konverguoja greičiau, bet gali ir diverguoti:
+\begin{itemize}
+  \item Paprastųjų iteracijų metodas (tiksliau, metodų grupė) – iteratyvus
+    metodas, kaip surasti sprendinį.
+  \item Relaksacijos metodas – patobulintas paprastųjų iteracijų metodas,
+    siekiant padidinti konvergavimo tikimybę.
+  \item Niutono metodas – greičiausias, bet kaprizingas pradinio
+    taško parinkimo atžvilgiu.
+  \item Kirstinių metodas – panašus į Niutono.
+  \item Parabolių metodas – skirtas daugianariams.
+\end{itemize}
+
+\section{Šaknų atskyrimas}
+
+\cite[23-25]{textbook}
+
+\TODO{\slide{7}}
+Paruošiamasis etapas yra šaknų atskyrimas. Jei intervale yra daugiau
+nei viena šaknis, tai mes galim rasti kokią nors šaknį, o ne tą
+kurią mums reikia.
+
+\subsection{Grafinis šaknų atskyrimo metodas}
+
+\TODO{\slide{8-10}}
+Grafinis sprendimas – patikslinimas. Galima priartinti įdomias vietas.
+
+Žingsniai:
+\begin{enumerate}
+  \item Schematiškai nubraižomas funkcijos grafikas.
+  \item Nustatomas intervalas, kurio galuose funkcija įgyja priešingų
+    ženklų reikšmes.
+  \item Toliau šaknys yra tikslinamos naudojant kitus metodus
+    (pavyzdžiui, pusiaukirtos).
+\end{enumerate}
+
+\subsection{Intervalo skaidos metodas}
+
+\TODO{\slide{11}}
+Pradinis intervalas yra padalinamas į $N$ dalių ir yra nustatomas
+funkcijos ženklas kiekvieno dalinio intervalo galuose. Jei dalinio
+intervalo galuose funkcija yra priešingų ženklų, tai iš to
+išplaukia, kad tame daliniame intervale yra lygties sprendiniai.
+
+Šio metodo trūkumas yra tai, kad galima nerasti visų sprendinių:
+\begin{itemize}
+  \item Jei daliniame intervale sprendinių skaičius yra nelyginis, tai
+    rasime tik vieną sprendinį.
+  \item Jei daliniame intervale sprendinių skaičius yra lyginis, tai
+    praleisime intervalą.
+\end{itemize}
+Šių problemų galima bandyti išvengti pakartojant intervalų paiešką su
+smulkesniu diskretizavimo žingsniu.
+
+\TODO{\slide{12-13}}
+
+\subsection{Monotoniškumo intervalų metodas}
+
+\TODO{\slide{14}}
+Monotoniškumo intervalas yra intervalas, kuriame išvestinė nekeičia
+ženklo. Monotoniškumo intervale lygtis $f(x) = 0$ negali turėti
+daugiau nei vieną sprendinį. Todėl:
+\begin{itemize}
+  \item Monotoniškumo intervaluose, kurių galuose $f(x)$ ̨įgyja priešingų
+    ženklų reikšmes, yra vienintelis sprendinys.
+  \item Monotoniškumo intervaluose, kurių galuose $f(x)$ reikšmių ženklai
+    yra vienodi, sprendinių nėra.
+\end{itemize}
+
+
+\section{Metodai reikalaujantys pradinio intervalo parinkimo}
+
+\subsection{Pusiaukirtos metodas}
+
+\cite[19-22]{textbook}
+
+\TODO{\slide{15}}
+\begin{prop}[Bolcano ir Koši teorema]
+  Jei funkcija $f(x)$ yra tolydi intervale $\left[ a; b \right]$ ir šio
+  intervalo galuose įgyja priešingų ženklų reikšmes, tai egzistuoja toks
+  taškas $c*, a < c* < b$, kuriame ši funkcija yra lygi nuliui:
+  \begin{equation*}
+    f(c*) = 0.
+  \end{equation*}
+\end{prop}
+
+\begin{note}
+  Bolcano ir Koši teorema garantuoja, kad egzistuoja bent viena
+  šaknis. Šaknų gali būti ir daugiau.
+\end{note}
+
+\TODO{\slide{16}}
+
+\TODO{\slide{17}}
+Pusiaukirtos metodo algoritmas:
+\begin{minted}[mathescape]{python}
+def pusiaukirtos(f, a, b, n=0):
+  # $f$ – funkcija nuo $x$.
+  # $a, b$ – intervalo galai, kurie tenkina sąlygą $f(a)f(b)<0$.
+  # $n$ – dalijimų skaičius.
+  # $\varepsilon$ – tikslumas.
+  # MAX_ITERATION – didžiausias leistinas iteracijų skaičius.
+
+  # Vidurio taško apskaičiavimas.
+  c = (a + b) / 2
+
+  if n == MAX_ITERATION:
+    # Viršytas iteracijų skaitliukas.
+    return c
+
+  # Tikslumo tikrinimas.
+  if abs(b - a) < 2 * EPSILON:
+    # $c$ yra apytikslis sprendinys, nes $|c_{n}-c*|<\varepsilon$ 
+    return c
+  else:
+    if f(c) == 0:
+      # $c$ yra tikslus sprendinys.
+      return c
+    elif f(c) * f(a) < 0:
+      # Rekursyvus kvietimas su intervalu $\left[a;c\right]$.
+      return pusiaukirtos(f, a, c, n + 1)
+    else:
+      # Rekursyvus kvietimas su intervalu $\left[c;b\right]$.
+      return pusiaukirtos(f, c, b, n + 1)
+\end{minted}
+
+\TODO{\slide{18-19}}
+Skaičiavimo nutraukimo sąlygos:
+\begin{enumerate}
+  \item $|a_{n} - b_{n}| \leq 2\varepsilon$ – geresnis, kai uždavinys
+    su specialiaisiais atvejais.
+  \item $f(c_{n}) \approx 0$, tai yra $|f(c_{n})| \leq \varepsilon$
+    – jei geras uždavinys, tai toks pats kaip 1. Jei funkcijos reikšmė
+    artėja prie 0 iš labai „toli“, tai gali duoti didelę paklaidą.
+  \item Pasiektas maksimalus iteracijų skaičius – saugiklis.
+\end{enumerate}
+
+\section{Metodai nereikalaujantys pradinio intervalo parinkimo}
+
+\TODO{\slide{20-21}}
+
+Visi šie metodai yra paprastųjų iteracijų metodo variacijos.
+
+\subsection{Paprastųjų iteracijų metodas}
+
+\cite[26-31]{textbook}
+
+Paprastųjų iteracijų metodo idėja:
+\begin{enumerate}
+  \item Perrašome lygtį $f(x) = 0$ į:
+    \begin{equation*}
+      x = g(x)
+    \end{equation*}
+  \item Sprendinio ieškome taikydami iteracijas:
+    \begin{equation*}
+      x_{n+1} = g(x_{n})
+    \end{equation*}
+\end{enumerate}
+
+\TODO{\slide{23}}
+Funkcija $g$ parenkama taip, kad abiejų lygčių šaknys sutampa. Tai
+galima padaryti keliais būdais, svarbu tik, kad seka $x_{i}$
+konverguotų. Pavyzdžiui, kadangi $f(x) = 0$, tai galima ir taip:
+\begin{equation*}
+  x = g(x) + 2 \cdot f(x)
+\end{equation*}
+
+\TODO{\slide{24}}
+\begin{prop}
+  \label{prop:SimpleIterationConvergance}
+  Jei:
+  \begin{enumerate}
+    \item lygties $x = g(x)$ sprendinys $c$ yra intervale
+      $\left[ a; b \right] \subset \left[ c - \delta; c + \delta \right]$;
+    \item funkcija $g(x)$ šiame intervale turi tolydžią išvestinę;
+    \item $|g'(x)| \leq q < 1$;
+  \end{enumerate}
+  tai, parinkus bet kokį pradinį artinį $x_{0}$ iš $\left[ a; b \right]$, pagal
+  formulę
+  \begin{equation*}
+    x_{n+1} = g(x_{n})
+  \end{equation*}
+  sudaryta begalinė seka $\left\{ x_{n} \right\}$ konverguos į $c$.
+\end{prop}
+
+\TODO{\slide{25}}
+\begin{prop}
+  Lygties $x = g(x)$ tiksliojo sprendinio $c$ artinių $x_{n}$, apskaičiuotų
+  paprastųjų iteracijų metodu
+  \begin{equation*}
+    x_{n+1} = g(x_{n}),
+  \end{equation*}
+  paklaida įvertinama tokia nelygybe:
+  \begin{equation*}
+    |x_{n+1} - c| < \frac{q}{1 - q}|x_{n+1}-x_{n}|.
+  \end{equation*}
+\end{prop}
+
+\TODO{\slide{26}}
+
+\TODO{\slide{27}}
+Išvados apie paprastųjų iteracijų metodo konvergavimą:
+\begin{enumerate}
+  \item Jei $g(x)$ yra nemažėjanti, $0 < g'(x) \leq q < 1$ kai
+    $x \in \left[ c - \delta; c + \delta \right]$, tai iteracinė seka artėja
+    prie $c$ monotoniškai.
+  \item Jei $g(x)$ yra nedidėjanti, $-1 < -q \leq g'(x) < 0$, kai
+    $x \in \left[ c - \delta; c + \delta \right]$, tai sprendinys $c$ yra
+    tarp bet kurių dviejų gretimų artinių, o artinio paklaida:
+    \begin{equation*}
+      |x_{n+1} - c| \leq |x_{n+1} - x_{n}|.
+    \end{equation*}
+  \item Jei tenkinamos \ref{prop:SimpleIterationConvergance} teoremos
+    sąlygos, tai didėjant $n$, atstumas tarp dviejų gretimų artinių
+    mažėja:
+    \begin{equation*}
+      |x_{n+1} - x_{n}| \leq q|x_{n} - x_{n-1}|, q < 1.
+    \end{equation*}
+\end{enumerate}
+
+\TODO{\slide{28}}
+Paprastųjų iteracijų metodo algoritmas:
+\begin{minted}[mathescape]{python}
+def paprastuju_iteraciju(g, q, x, n=0):
+  # $g$ – funkcija nuo $x$.
+  # $q = \max_{\left[a;b\right]}|g^{(1)}(x)|$
+  # $x$ – pradinis artinys.
+  # $n$ – iteracijų skaitliukas.
+  # $\varepsilon$ – tikslumas.
+  # MAX_ITERATION – didžiausias leistinas iteracijų skaičius.
+
+  x_new = g(x)
+
+  if n == MAX_ITERATION:
+    # Viršytas iteracijų skaitliukas.
+    return x_new
+
+  # Tikslumo tikrinimas.
+  if abs(x_new - x) <= ((1-q)/q) * EPSILON:
+    # $x_{new}$ yra apytikslis sprendinys, nes
+    # $|x_{new}-x|\leq\frac{1-q}{q}\varepsilon$
+    return x_new
+  else:
+    return paprastuju_iteraciju(g, q, x_new, n+1)
+\end{minted}
+
+Kuo $q$ mažesnis, tuo
+\begin{equation*}
+  \frac{1 - q}{q}
+\end{equation*}
+bus didesnis skaičius ir greičiau konverguos.
+
+\TODO{\slide{29-31}}
+
+%\section{1p}
+%(31-33).
+
+\subsection{Relaksacijos metodas}
+
+\cite[34-35]{textbook}
+
+\TODO{\slide{32}}
+Tarkime, kad $-M \leq g'(x) \leq -m < 0$, kai $x \in \left[ a; b \right]$.
+\begin{itemize}
+  \item Jei $M > 1$, tai paprastųjų iteracijų metodas $x_{n+1} = g(x_{n})$
+    gali diverguoti.
+  \item Relaksacijos metodas
+    \begin{equation*}
+      x_{n+1} = (1 - \omega)x_{n} + \omega g(x_{n})
+    \end{equation*}
+    konverguoja, jei parenkamas atitinkamas relaksacijos parametras
+    $\omega$.
+  \item Kai $\omega = 1$, relaksacijos metodas sutampa su paprastųjų
+    iteracijų metodu.
+\end{itemize}
+\note{$g'(x)$ turi būti neigiama.}
+\note{Relaksacijos metodo parametro $\omega$ prasmė: jis „stabdo“, todėl
+algoritmas „nebeprašoka“ atsakymo.}
+
+\TODO{\slide{33}}
+Tegu $z_{n} = x_{n} - x$ yra paklaida. Tada:
+\begin{equation*}
+  z_{n+1} = (1 - \omega)z_n + \omega(g(x_n) - g(x))
+\end{equation*}
+Skirtumą $g(x_n) - g(x)$ galime pakeisti:
+\begin{equation*}
+  g(x_n) - g(x) = g'(\xi)(x_{n} - x) = g'(\xi)z_{n},
+\end{equation*}
+čia $\xi = x_{n} + \theta(x - x_n), |\theta| < 1$.
+
+Taigi, gauname:
+\begin{equation*}
+  z_{n+1} = (1 - \omega(1 + |g'(\xi)|))z_{n} = q(\omega, g')z_{n}.
+\end{equation*}
+
+$\omega_{opt}$ yra paklaidos minimumo uždavinio
+\begin{equation*}
+  \min_{\omega} \max_{m \leq |g'| \leq M} |q(\omega, g')|
+    = |q(\omega_{opt}, g')|
+\end{equation*}
+sprendinys. Kitaip tariant, $w_{opt}$ yra mažiausias funkcijos
+$|q(w,g')|$ maksimumas.
+
+\TODO{\slide{34}}
+\begin{equation*}
+  \omega_{opt} = \frac{2}{2 + m + M}
+\end{equation*}
+
+\TODO{\slide{35}}
+Relaksacijos metodo algoritmas:
+\begin{minted}[mathescape]{python}
+def relaksacijos(g, omega, x, n=0):
+  # $g$ – funkcija nuo $x$.
+  # $\omega$ – relaksacijos metodo parametras.
+  # $x$ – pradinis artinys.
+  # $n$ – iteracijų skaitliukas.
+  # $\varepsilon$ – tikslumas.
+  # MAX_ITERATION – didžiausias leistinas iteracijų skaičius.
+
+  x_new = (1-omega)*x + omega*g(x)
+
+  if n == MAX_ITERATION:
+    # Viršytas iteracijų skaitliukas.
+    return x_new
+
+  # Tikslumo tikrinimas.
+  if abs(x_new - x) <= EPSILON:
+    # $x_{new}$ yra apytikslis sprendinys.
+    return x_new
+  else:
+    return relaksacijos(g, omega, x_new, n+1)
+\end{minted}
+
+\subsection{Niutono metodas}
+
+\cite[36-39]{textbook} \en{Newton-Raphson method}
+
+\TODO{\slide{36}}
+
+Niutono metodas pagrįstas Teiloro eilutės skleidiniu. Liestinės taške
+$x_{i}$ lygtis yra:
+\begin{equation*}
+  y = f(x_{i}) + f'(x_{i})(x - x_{i})
+\end{equation*}
+Šios tiesės ir $Ox$ ašies susikirtimo tašką laikysime nauju artiniu $x_{n+1}$:
+\begin{align*}
+  0 &= f(x_{i}) + f'(x_{i})(x_{i+1} - x_{i}) \\
+  x_{i+1} &= x_{i} - \frac{f(x_{i})}{f'(x_{i})}
+\end{align*}
+
+Niutono metodui mums reikia žinoti funkcijos išvestinę. Skaičiavimams galime
+naudoti jos artinį:
+\begin{equation*}
+  f'(x) = \frac{f(x + \varepsilon) - f(x)}{\varepsilon}
+\end{equation*}
+
+\TODO{\slide{37}}
+
+\TODO{\slide{38}}
+Niutono metodo algoritmas:
+\begin{minted}[mathescape]{python}
+def niutono(f, x, n=0):
+  # $f$ – funkcija nuo $x$.
+  # $x$ – pradinis artinys.
+  # $n$ – iteracijų skaitliukas.
+  # $\varepsilon$ – tikslumas.
+  # MAX_ITERATION – didžiausias leistinas iteracijų skaičius.
+
+  def derivative(f, x):
+    # $f^{(1)}(x) = \frac{f(x + \varepsilon) - f(x)}{\varepsilon}$
+    return (f(x + EPSILON) - f(x))/EPSILON
+
+  x_new = x - f(x)/derivative(f, x)
+
+  if n == MAX_ITERATION:
+    # Viršytas iteracijų skaitliukas.
+    return x_new
+
+  # Tikslumo tikrinimas.
+  if abs(x_new - x) <= EPSILON:
+    # $x_{new}$ yra apytikslis sprendinys.
+    return x_new
+  else:
+    return niutono(f, x_new, n+1)
+\end{minted}
+
+\TODO{\slide{39}}
+\begin{prop}
+  Jei lygtis $f(x) = 0$ turi sprendinį
+  \begin{equation*}
+    |f'(x)| \geq M_{1} > 0, |f''(x)| \leq M_{2}
+  \end{equation*}
+  ir pradinis artinys $x_{0}$ yra pakankamai arti tiksliojo sprendinio, tai
+  Niutono metodo iteracijų seka konverguoja į tikslųjį sprendinį $x*$ ir
+  paklaida gali būti įvertinta:
+  \begin{equation*}
+    |x_{i+1} - x*| \leq \frac{M_{2}}{2M_{1}}|x_{i} - x*|^{2}.
+  \end{equation*}
+\end{prop}
+
+\TODO{\slide{40}}
+
+\TODO{\slide{41}}
+Išvados apie Niutono metodą:
+\begin{itemize}
+  \item Reikalingas išvestinės skaičiavimas.
+  \item Išvestinę galima skaičiuoti skaitiškai.
+  \item Konvergavimas priklauso nuo pradinio taško (metodas gali ir
+    diverguoti).
+  \item Jei Niutono metodas konverguoja, tai labai greitai (jei šaknis nėra
+    kartotinė, tai konvergavimo greitis yra kvadratinis).
+\end{itemize}
+
+\note{Kartotinė šaknis gali būti „pasislėpusi“ Teiloro eilutėje.}
+
+\TODO{\slide{42}}
+
+\TODO{\slide{43}}
+Sunkumai susiję su kartotinėmis šaknimis:
+\begin{itemize}
+  \item Funkcija nekeičia ženklo, jei šaknies kartotinumas yra lyginis.
+  \item $f'(x)$ artėja į 0 – reikia tikrinti programiškai.
+  \item Esant kartotinėms šaknims Niutono ir kirstinių metodai lėčiau
+    konverguoja. Pavyzdžiui, Niutono metodas konverguoja tiesiškai.
+\end{itemize}
+
+\TODO{\slide{44}}
+Jei šaknies kartotinumas žinomas, tai Niutono metodą galima patobulinti:
+\begin{equation*}
+  x_{i+1} = x_{i} - m\frac{f(x_{i})}{f'(x_{i})}.
+\end{equation*}
+Šiuo būdu yra išsaugomas kvadratinis konvergavimas.
+
+\TODO{\slide{45-46}}
+Niutono metodu skaičiuojant $\varepsilon = 10^{-6}$,  6-7 iteracijos
+yra normalu. Jei daugiau, tai jau reikia gilintis kas čia ne taip.
+
+\TODO{\slide{47}}
+Kai šaknies kartotinumas nežinomas, galima funkciją $f(x)$ pakeisti funkcija
+$u(x) = \frac{f(x)}{f'(x)}$, kuri neturi kartotinės šaknies:
+\begin{align*}
+  u(x) &= \frac{f(x)}{f'(x)} \\
+  x_{i+1} &= x_{i} - \frac{u(x_{i})}{u'(x_{i})} \\
+  x_{i+1} &= x_{i} - 
+    \frac{f(x_{i})f'(x_{i})}{(f'(x_{i}))^{2}-f(x_{i})f''(x_{i})}
+\end{align*}
+
+\TODO{\slide{48-49}}
+
+\TODO{\slide{50}}
+Niutono metodas greitai konverguoja, bet jis gali diverguoti:
+\begin{enumerate}
+  \item Jei perlinkio taškas ($f'' = 0$) yra netoli šaknies.
+  \item Jei yra lokalus minimumas arba maksimumas ($f' = 0$).
+  \item Jei šäknis yra kartotinė.
+  \item Jei liestinė horizontali.
+\end{enumerate}
+
+\TODO{\slide{51-55}}
+
+%\section{3p}
+%\cite[37]{textbook}
+%\section{4p}
+%\cite[39]{textbook}
+\subsection{Kirstinių metodas}
+
+\cite[40-42]{textbook}
+
+\TODO{\slide{56}}
+Kirstinių metodas skiriasi nuo Niutono metodo tuo, kad vietoje liestinės taške
+$x_{i}$ yra naudojama kirstinė:
+\begin{equation*}
+  x_{i+2} = x_{i+1} - f(x_{i+1})\frac{x_{i+1}-x_{i}}{f(x_{i+1}) - f(x_{i})}
+\end{equation*}
+Kitaip tariant išvestinę keičiame taškų skirtumu. Kirstinių
+metodas turi visas tas pačias problemas kaip ir Niutono metodas.
+
+\TODO{\slide{57}}
+Kirstinių metodo algoritmas:
+\begin{minted}[mathescape]{python}
+def kirstiniu(f, x0, x1, n=0):
+  # $f$ – funkcija nuo $x$.
+  # $x_{0}, x_{1}$ – pradiniai artiniai.
+  # $n$ – iteracijų skaitliukas.
+  # $\varepsilon$ – tikslumas.
+  # MAX_ITERATION – didžiausias leistinas iteracijų skaičius.
+
+  x2 = x1 - f(x1) * ((x1 - x0)/(f(x1) - f(x0)))
+
+  if n == MAX_ITERATION:
+    # Viršytas iteracijų skaitliukas.
+    return x2
+
+  # Tikslumo tikrinimas.
+  if abs(x2 - x1) <= EPSILON:
+    # $x_{2}$ yra apytikslis sprendinys.
+    return x2
+  else:
+    return kirstiniu(f, x1, x2, n+1)
+\end{minted}
+
+\TODO{\slide{58}}
+Kirstinių metodo privalumai:
+\begin{itemize}
+  \item Greitai konverguoja (jei konverguoja).
+  \item Nereikalingas pradinio intervalo parinkimas.
+\end{itemize}
+Kirstinių metodo trūkumai:
+\begin{itemize}
+  \item Nevisada konverguoja.
+\end{itemize}
+
+\TODO{\slide{59-61}}
+
+%\section{5p}
+%\cite[41]{textbook}
+
+
+\subsection{Parabolių metodas}
+
+\TODO{\slide{62}}
+
+Pusiaukirtos, Niutono ir kirstinių metodais ne visada lengvai galima
+rasti aukštesniųjų laipsnių daugianarių visas šaknis. Šiam
+uždaviniui spręsti labiau tinka Parabolių \en{Muller's} metodas.
+
+\TODO{\slide{63-64}}
+
+Parabolių metodo privalumai:
+\begin{itemize}
+  \item Parabolių metodo iteracinis procesas visada konverguoja.
+  \item Konvergavimo greitis artimas kvadratiniam.
+  \item Randamos ne tik realiosios, bet ir kompleksinės šaknys.
+\end{itemize}
