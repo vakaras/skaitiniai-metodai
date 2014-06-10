@@ -1,0 +1,53 @@
+\Chapter{Priedas}
+
+\section{Veiksmai su matricomis}
+
+\begin{defn}[Invertuojama matrica]
+  Kvadratinė matrica $\matrixa$ yra vadinama invertuojama, jei egzistuoja
+  tokia kvadratinė matrica $\matrixb$, kad tenkinama tapatybė:
+  \begin{equation*}
+    \matrixa \matrixb = \matrixb \matrixa = \matrixi
+  \end{equation*}
+  Jei matrica $\matrixb$ egzistuoja, tai ji yra vienareikšmiškai priklauso
+  nuo matricos $\matrixa$ ir yra žymima $\matrixa^{-1}$.
+\end{defn}
+
+\begin{defn}[Transponuota matrica]
+  Matricos $\matrixa$ transponuota matrica vadinama matrica $\matrixa^{T}$,
+  kuri yra gaunama matricos $\matrixa$ elementus atspindėjus jos pagrindinės
+  įstrižainės atžvilgiu. Matricos $\matrixa$ ir matricos
+  $\matrixa^{T}$ elementai tenkina tokį sąryšį:
+  \begin{equation*}
+    \left[ \matrixa^{T} \right]_{ij} = \left[ \matrixa \right]_{ji}
+  \end{equation*}
+\end{defn}
+
+\begin{defn}[Matricų sandauga]
+  Matricos $\matrixa$, kurios dimensijos yra $n \times m$, ir matricos
+  $\matrixb$, kurios dimensijos yra $m \times p$, sandauga
+  $\matrixa\matrixb$ yra matrica, kurios dimensijos yra $n \times p$ ir
+  kurios elementai yra lygūs:
+  \begin{equation*}
+    \left[ AB \right]_{ij}
+      = \sum_{k=1}^{m} \left[ A \right]_{ik} \left[ B \right]_{kj}
+  \end{equation*}
+  Pavyzdžiui:
+  \begin{equation*}
+    \begin{pmatrix}
+      a & b & c \\
+      p & q & r \\
+      u & v & w \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      x \\
+      y \\
+      z \\
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      ax + by + cz \\
+      px + qy + rz \\
+      ux + vy + wz \\
+    \end{pmatrix}
+  \end{equation*}
+\end{defn}
