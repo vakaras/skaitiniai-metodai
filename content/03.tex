@@ -1,0 +1,417 @@
+\Chapter{Tiesinių lygčių sistemų sprendimas}
+
+% 2014-02-18
+
+\TODO{\slide{2-3}}
+
+\TODO{\slide{4}}
+
+Tiesinę lygčių sistemą:
+\begin{equation*}
+  \left\{
+    \begin{array}{ccccccccc}
+      a_{11}x_{1} &+& a_{12}x_{2} &+& \cdots &+& a_{1n}x_{n} &=& b_{1} \\
+      a_{21}x_{1} &+& a_{22}x_{2} &+& \cdots &+& a_{2n}x_{n} &=& b_{2} \\
+      \vdots & & \vdots & & \ddots & & \vdots &=& \vdots \\
+      a_{n1}x_{1} &+& a_{n2}x_{2} &+& \cdots &+& a_{nn}x_{n} &=& b_{n} \\
+    \end{array}
+  \right.
+\end{equation*}
+patogu užrašyti matriciniu pavidalu:
+\begin{equation*}
+  \matrixa \vecx = \vecb
+  \t{arba} 
+  \begin{pmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1} & a_{n2} & \cdots & a_{nn} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_{1} \\
+    x_{2} \\
+    \vdots \\
+    x_{n} \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    b_{1} \\
+    b_{2} \\
+    \vdots \\
+    b_{n} \\
+  \end{pmatrix}
+\end{equation*}
+
+\TODO{\slide{5}}
+\begin{defn}[Įstrižainė matrica]
+  \begin{equation*}
+    \matrixd
+    =
+    \begin{pmatrix}
+      d_{11}  & 0       & \cdots & 0 \\
+      0       & d_{22}  & \cdots & 0 \\
+      \vdots  & \vdots  & \ddots & \vdots \\
+      0       & 0       & \cdots & d_{nn} \\
+    \end{pmatrix}
+  \end{equation*}
+\end{defn}
+\begin{defn}[Vienetinė matrica]
+  \begin{equation*}
+    \matrixi
+    =
+    \begin{pmatrix}
+      1       & 0       & \cdots & 0 \\
+      0       & 1       & \cdots & 0 \\
+      \vdots  & \vdots  & \ddots & \vdots \\
+      0       & 0       & \cdots & 1 \\
+    \end{pmatrix}
+  \end{equation*}
+  \begin{equation*}
+    \matrixa\matrixi = \matrixi\matrixa = \matrixa
+  \end{equation*}
+\end{defn}
+\begin{defn}[Apatinė trikampė matrica]
+  \begin{equation*}
+    \matrixl
+    =
+    \begin{pmatrix}
+      a_{11} & 0      & \cdots & 0 \\
+      a_{21} & a_{22} & \cdots & 0 \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{n1} & a_{n2} & \cdots & a_{nn} \\
+    \end{pmatrix}
+  \end{equation*}
+\end{defn}
+\begin{defn}[Viršutinė trikampė matrica]
+  \begin{equation*}
+    \matrixu
+    =
+    \begin{pmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      0      & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      0      & 0      & \cdots & a_{nn} \\
+    \end{pmatrix}
+  \end{equation*}
+\end{defn}
+\TODO{\slide{6-7}}
+\begin{defn}[Juostinė matrica]
+  Matrica $\matrixa$ yra juostinė, jei $\exists r (r \in \NSET, r < n)$ toks, kad
+  $a_{ij} = 0$, kai $|i-j|>r, i, j = 1,\ldots,n.$
+
+  Kitaip tariant, išskyrus juostas prie pagrindinės įstrižainės (kurių plotis
+  yra $2r + 1$), visi kiti elementai yra nuliniai.
+\end{defn}
+\begin{defn}[Triįstrižainė matrica]
+  Juostinė matrica, kurios $r = 1$.
+\end{defn}
+
+\TODO{\slide{8}}
+Kai lygčių sistemoje nedaug, ją galima lengvai išspręsti:
+\begin{itemize}
+  \item Grafiškai.
+  \item Kramerio metodu.
+  \item Kintamųjų eliminavimu.
+\end{itemize}
+
+Atkreipti dėmesį, kad:
+\begin{itemize}
+  \item Jei determinantas nelygus 0, tada yra lygiai vienas sprendinys.
+  \item Jei determinantas lygus 0, tai matrica yra singualiari. Tokiu
+    atveju sprendinių gali nebūti iš viso, arba jų gali būti be
+    galo daug.
+\end{itemize}
+
+\TODO{\slide{9}}
+
+Blogai sąlygotas uždavinys – jeigu dėl paklaidų, galima gauti visiškai
+kitokią situaciją. (Pavyzdžiui, determinantas yra labai mažas skaičius.)
+
+\TODO{\slide{10}}
+
+\TODO{\slide{11}}
+Kramerio metodas leidžia spręsti visas matricas, bet jis yra labai
+lėtas.
+
+\TODO{\slide{12}}
+Tiesinių lygčių sprendimo metodai:
+\begin{enumerate}
+  \item Tiesioginiai metodai. Tinka spręsti lygtims, kurios turi iki $10^{4}$
+    nežinomųjų. Tikslus sprendinys gaunamas per baigtinį žingsnių skaičių.
+    \begin{itemize}
+      \item Gauso.
+      \item Skaidos.
+      \item Choleckio.
+      \item Perkelties.
+    \end{itemize}
+  \item Iteraciniai metodai. Tinka spręsti lygtims, kurios turi iki $10^{7}$
+    nežinomųjų. Randamas apytikslis sprendinys bet kokiu norimu tikslumu.
+    \begin{itemize}
+      \item Jakobio.
+      \item Zeidelio.
+      \item Relaksacijos.
+      \item Mišrusis.
+      \item Variaciniai metodai – iteracinių metodų grupė tinkama spręsti
+        lygtims turinčioms daugiau nei $10^{7}$ nežinomųjų. Variaciniais
+        metodais yra ieškoma sprendinio keičiant uždavinio prigimtį
+        (ieškomas minimumas hipererdvėje).
+    \end{itemize}
+\end{enumerate}
+Skaidos, Choleckio, Perkelties metodai yra Gauso metodo modifikacijos.
+Kadangi skaičiuojant kompiuteriu vis tiek gauname tik apytikslius
+rezultatus, tai poreikis naudoti tiesioginius metodus mažėja.
+
+Praktikoje paprastai yra naudojami dar sudėtingesni metodai, bet mes
+jų nenaudosime.
+
+\TODO{\slide{13}}
+Pasirinkimas tarp tiesioginių ir iteracinių metodų gali priklausyti nuo
+kelių faktorių:
+\begin{itemize}
+  \item Teorinis metodo efektyvumas.
+  \item Matricos tipas. Pavyzdžiui, ar joje yra daug nulių, ar nenuliniai
+    elementai yra išsidėstę tam tikra tvarka.
+  \item Atminties laikymo reikalavimai.
+  \item Kompiuterių architektūra.
+\end{itemize}
+
+\section{Tiesioginiai sprendimo metodai}
+
+\TODO{\slide{14}}
+
+Skaidos metodai naudojami kai daug kartų reikia spręsti tą pačią
+lygtį su ta pačia matrica ir skirtingais $b_{i}$.
+
+\subsection{Gauso metodas}
+
+\cite[60-62]{textbook}
+
+\TODO{\slide{15}}
+
+Idėja:
+\begin{itemize}
+  \item Nuoseklus nežinomųjų šalinimas.
+  \item Sistemos matricos pertvarkymas į viršutinę trikampę matricą.
+  \item Sprendinys randamas iš pertvarkytosios matricos.
+\end{itemize}
+
+\TODO{\slide{16-20}}
+
+\TODO{\slide{21}}
+Gauso metodo skaičiavimo apimtis:
+\begin{itemize}
+  \item Tiesioginė eiga yra $O(\frac{2}{3}n^{3})$ aritmetinių veiksmų.
+  \item Atbulinė eiga yra $O(\frac{1}{2}n^{2})$ aritmetinių veiksmų.
+\end{itemize}
+Daugiausiai laiko suryja tiesioginė eiga. Idėja: bandyti ją optimizuoti.
+
+\TODO{\slide{22}}
+
+\TODO{\slide{23}}
+
+
+\TODO{\slide{24}}
+Apvalinimo paklaidos:
+\begin{itemize}
+  \item Didelė dalis skaičiavimų su $\frac{1}{3}n^{3}$ operacijų.
+  \item Svarbu – paklaida didėja.
+  \item Didelėms sistemoms (virš 100 lygčių), apvalinimo paklaida gali
+    būti pakankamai didelė.
+  \item Blogai sąlygoti uždaviniai – maži koeficientų pokyčiai
+    lemia didelius sprendinių pokyčius.
+  \item Apvalinimo paklaidų analizė ypač svarbi blogai sąlygotiems
+    uždaviniams.
+\end{itemize}
+
+\TODO{\slide{25}}
+
+Jeigu matricos determinantą skaičiuojame tiesioginiu metodu, tai yra
+labai brangi operacija. Jeigu panaudodami Gauso metodą suvedėme į
+trikampę matricą, tai determinanto skaičiavimas smarkiai
+supaprastėja:
+\begin{equation*}
+  \det A = \det U = a_{11} \tilde{a}_{22} \cdots \tilde{a}_{nn}.
+\end{equation*}
+
+\subsection{Pagrindinio elemento parinkimo būdai: 1, 2 ir 3}
+
+\cite[66-68]{textbook}
+
+\TODO{\slide{26}}
+Gauso metodo galimi sunkumai:
+\begin{itemize}
+  \item Dalyba iš nulio.
+  \item Apvalinimo paklaidos.
+  \item Blogai sąlygoti uždaviniai.
+\end{itemize}
+Šias problemas galima bandyti spręsti parenkant pagrindinį elementą.
+Parinkimas yra nereikalingas, jei:
+\begin{itemize}
+  \item Išpildyta pagrindinės įstrižainės vyravimo sąlyga:
+    \begin{equation*}
+      |a_{ii}| > \sum^{n}_{j=1,j \neq i}|a_{ji}|, i = 1,\ldots,n.
+    \end{equation*}
+  \item Matrica $\matrixa$ yra simetrinė:
+    \begin{equation*}
+      \matrixa^{T} = \matrixa
+    \end{equation*}
+    ir teigiamai apibrėžta:
+    \begin{equation*}
+      \forall \vecx \neq 0 : (\matrixa\vecx,\vecx) = \vecx^{T}\matrixa\vecx > 0,
+    \end{equation*}
+    čia $(\matrixa\vecx,\vecx)$ yra vektorių $\matrixa\vecx$ ir $\vecx$
+    skaliarinė sandauga.
+\end{itemize}
+
+\TODO{\slide{27}}
+Pagrindinio elemento parinkimo būdai:
+\begin{enumerate}
+  \item \emph{Iš stulpelio elementų.}
+    Pagrindinis elementas parenkamas iš stulpelio elementų. Šios dvi lygtys
+    sukeičiamos vietomis.
+  \item \emph{Iš eilutės elementų.}
+    Pagrindinis elementas parenkamas iš pertvarkomos eilutės elementų.
+    Sukeičiami vietomis matricos $\matrixa$ stulpeliai ir įsimenama naujoji
+    nežinomųjų tvarka.
+  \item \emph{Pagal lygties koeficientų modulių sumą.}
+    Kiekvienoje lygtyje randamas didžiausias koeficientas ir iš jo
+    padalijama atitinkama lygtis. Lygtys sukeičiamos vietomis taip, kad
+    būtų dirbama su lygtimi, kurios koeficientų modulių suma yra mažiausia.
+    Nežinomieji pernumeruojami taip, kad būtų dalinama iš didžiausio
+    koeficiento.
+\end{enumerate}
+Pagrindinio elemento parinkimas pagal koeficientų modulių sumą yra
+naudingas kai lygtyje yra daug skirtingos prigimties koeficientų (labai
+mažų ir labai didelių).
+
+\TODO{\slide{28-37}}
+
+\subsection{Triįstrižainės sistemos (perkelties algoritmas)}
+
+\cite[72-73]{textbook}
+
+\TODO{\slide{38}}
+
+Triįstrižainė matrica yra matrica turinti tris nenulines įstrižaines.
+
+\TODO{\slide{39}}
+
+\TODO{\slide{40}}
+Perkelties metodo algoritmas \en{Thomas algorithm, tridiagonal matrix
+algorithm}:
+\begin{enumerate}
+  \item Tiesioginė eiga.
+    \begin{align*}
+      C_{1} &= -\frac{c_{1}}{b_{1}} \\
+      D_{1} &= \frac{d_{1}}{b_{1}} \\
+      C_{k} &= -\frac{c_{k}}{a_{k}C_{k-1}+b_{k}}, k=2,3,\ldots,n-1 \\
+      D_{k} &= \frac{d_{k}-a_{k}D_{k-1}}{a_{k}C_{k-1}+b_{k}}, k=2,3,\ldots,n \\
+    \end{align*}
+  \item Atbulinė eiga.
+    \begin{align*}
+      x_{n} &= D_{n} \\
+      x_{k} &= C_{k}x_{k+1} + D_{k}, k=n-1,n-2,\ldots,1 \\
+    \end{align*}
+\end{enumerate}
+
+\TODO{\slide{41}}
+\begin{prop}[Perkelties metodo pakankama konvergavimo sąlyga]
+  Jei
+  \begin{equation*}
+    |b_{i}| \geq |a_{i}| + |c_{i}|, i=1,\ldots,n
+  \end{equation*}
+  ir bent su vienu $i$ galioja griežta nelygybė, tai dalyba iš nulio ar
+  labai mažo skaičiaus perkelties metodo eigoje negalima.
+  \note{Perkelties metodo konvergavimo sąlyga skiriasi nuo Gauso metodo sąlygos
+  tuo, kad Gauso metodo sąlygoje yra griežta nelygybė.}
+\end{prop}
+
+\TODO{\slide{42-44}}
+
+\subsection{Skaidos metodas}
+
+\cite[76-78]{textbook}
+
+\TODO{\slide{45-49}}
+
+\TODO{\slide{50}}
+\begin{prop}
+  Visi matricos $\matrixa$ pagrindiniai minorai\footnote{Determinantai
+  prie įstrižainės.} nelygūs nuliai tada ir tik tada kai egzistuoja
+  apatinė trikampė matrica
+  $\matrixl (l_{ii}=1, \forall i)$ ir viršutinė trikampė matrica
+  $\matrixu$ tokios, kad $\matrixa = \matrixl \matrixu$.
+\end{prop}
+\note{Išskaidymo metodas dar kitaip yra vadinamas faktorizacijos metodu.}
+
+\TODO{\slide{51}}
+
+\TODO{\slide{52}}
+Skaidos metodo žingsniai:
+\begin{enumerate}
+  \item Išskaidome $\matrixa$ į $\matrixl$ ir $\matrixu$ sandaugą.
+  \item Žinodami $\vecb$ randame $\vecd$ iš $\matrixl\vecd = \vecb$.
+  \item Spręsdami $\matrixu\vecx = \vecd$ apskaičiuojame $\vecx$.
+\end{enumerate}
+Sklaidos metodo pranašumas yra tai, kad vieną kartą apskaičiavus $\matrixl$ ir
+$\matrixu$ galima spręsti sistemas su skirtingais $\vecb$ nekartojant
+matricos $\matrixa$ išskaidymo.
+
+\TODO{\slide{53-54}}
+
+\TODO{\slide{55}}
+LU metodo algoritmas:
+\begin{enumerate}
+  \item \TODO{Išskaidymas \slide{54}}
+  \item Tiesioginė eiga (keitimas):
+    \begin{equation*}
+      d_{i} = b_{i} - \sum_{j=1}^{i-1}l_{ij}d_{j}, i=1,\ldots,n
+    \end{equation*}
+  \item Atbulinė eiga (kaip ir Gauso metode):
+    \begin{align*}
+      x_{n} &= \frac{d_{n}}{u_{nn}} \\
+      x_{i} &= \frac{d_{i} - \sum_{j=i+1}^{n}u_{ij}x_{j}}{u_{ii}},
+        i=n-1,\ldots,2,1. \\
+    \end{align*}
+\end{enumerate}
+
+\TODO{\slide{56-64}}
+
+\TODO{\slide{65}}
+Skaidos metodas turi visas tas pačias problemas kaip ir Gauso, todėl
+Skaidos metodui irgi yra taikomas pagrindinio elemento parinkimas.
+
+\TODO{\slide{66}}
+
+\subsection{Choleckio metodas ir algoritmas}
+
+\cite[79-80]{textbook} \cite[81]{textbook}.
+
+\TODO{\slide{67}}
+Jei matrica $\matrixa$ yra simetrinė ir teigiamai apibrėžta\footnote{Matrica
+yra teigiamai apibrėžta, kai visos tikrinės reikšmės yra teigiamos.}, tai
+tokiu atveju yra patogu naudoti Choleckio dekompoziciją:
+\begin{equation*}
+  \matrixa = \matrixl\matrixl^{T} = \matrixu^{T}\matrixu
+\end{equation*}
+\note{Kai matrica $\matrixa$ yra simetrinė ir teigiamai apibrėžta, pagrindinio
+elemento parinkimas nereikalingas.}
+
+\TODO{\slide{68-69}}
+
+\TODO{\slide{70}}
+Choleckio metodo rekurentinės formulės:
+\begin{align*}
+  u_{ii} &= \sqrt{a_{ii} - \sum_{k=1}^{i-1}u_{ki}^{2}} \\
+  u_{ij} &= \frac{a_{ij} - \sum_{k=1}^{i-1}u_{ki}u_{kj}}{u_{ii}},
+    j=i+1,\ldots,n \\
+\end{align*}
+
+%\section{Gauso-Žordano metodas}
+%\cite[63]{textbook}
+%\section{Nesuderintos sistemos}
+%\cite[65]{textbook}
+%\section{Gauso metodo skaičiavimų apimtis}
+%\cite[69-70]{textbook}
+%\section{8p}
+%\cite[77]{textbook}
