@@ -1,0 +1,407 @@
+\Chapter{Splainai}
+
+% 2014-03-04
+
+\TODO{\slide{2}}
+
+%Priminimas: Interpoliavimo uždaviniai – skaitymas tarp matematinių
+%lentelių eilučių.
+
+%Anksčiau būdavo sprendžiami tik tokio tipo uždaviniai.
+
+%Istorinis nukrypimas: Po revoliucijos Prancuzijoje, kas liko be darbo?
+%Kirpėjai. Todėl jie buvo įdarbinti sudarinėti matematinių lentelių.
+
+%Kitas atvejis: Kai JAV buvo didžioji depresija, tai bedarbiai buvo
+%įdarbinti sudarinėti matematinių lentelių.
+
+\TODO{\slide{3}}
+
+Interpoliavimas daugianariais netinka (atsiranda osciliacijos):
+\begin{itemize}
+  \item Duomenys su dideliu gradientu (lygus grafikas su staigiu piku).
+  \item Duomenys su triukšmu.
+  \item Neglodus paviršius (netolydi išvestinė).
+\end{itemize}
+
+\TODO{\slide{4}}
+
+\TODO{\slide{5}}
+
+Interpoliavimas daugianariais:
+\begin{itemize}
+  \item $L_{n}(x)$ eina per visus duotus taškus.
+  \item Jei atsiranda papildomi duomenys, reikia didinti daugiaunario laipsnį,
+    kas nevisada tikslinga, nes gali atsirasti osciliacijos jei tiriama
+    funkcija nepanaši į daugianarį.
+\end{itemize}
+
+Alternatyva: interpoliavimas dalimis daugianarėmis funkcijomis.
+
+\TODO{\slide{6}}
+
+\TODO{\slide{7}}
+
+Tarkime, kad funkcija $y=f(x)$ yra apibrėžta reikšmių lentele
+$(x_{i};y_{i}), i=0,1,\ldots,N$. Intervale sudarome jos interpoliacinę
+funkciją iš neaukšto, pirmojo arba antrojo laipsnio interpoliacinių
+daugianarių, apibrėžtų atitinkamoje intervalo $\left[ x_{0}; x_{N} \right]$
+dalyje. Gauta funkcija yra tolydi visame intervale, net nėra
+diferencijuojama interpoliavimo taškuose.
+
+\TODO{\slide{8}}
+
+Dalimis tiesinė interpoliacinė funkcija:
+\begin{align*}
+  L_{0}^{1}(x) &= a_{0}(x-x_{0}) + b_{0} & x_{0} \leq x \leq x_{1} \\
+  L_{1}^{1}(x) &= a_{1}(x-x_{1}) + b_{1} & x_{1} \leq x \leq x_{2} \\
+               & \vdots \\
+  L_{i}^{1}(x) &= a_{i}(x-x_{i}) + b_{i} & x_{i-1} \leq x \leq x_{i} \\
+               & \vdots \\
+  L_{N-1}^{1}(x) &= a_{N-1}(x-x_{N-1}) + b_{N-1} & x_{N-1} \leq x \leq x_{N} \\
+\end{align*}
+čia:
+\begin{align*}
+  a_{i} &= \frac{y_{i+1} - y_{i}}{x_{i+1} - x_{i}}, \\
+  b_{i} &= y_{i}.
+\end{align*}
+
+\TODO{\slide{9}}
+
+%Dalimis tiesinė – du taškus sujungiame tiesėmis.
+
+\TODO{\slide{10}}
+
+Interpoliavimas splainais:
+\begin{itemize}
+  \item Nedidelio laipsnio daugianariai jungia duotuosius taškus.
+  \item Funkcija glodi visame intervale (taip pat ir vidiniuose interpoliavimo
+    mazguose).
+  \item Nedidelio laipsnio daugianariai neleidžia atsirasti osciliacijoms.
+\end{itemize}
+
+%Idėja – bandyti „suklijuoti“ gražiai. Tai vadinama
+%interpoliavimu splainais. (Jungiam taškus daugianariais.)
+
+%Ne tik funkcija, bet ir jos išvestinės turi būti tolydžios.
+
+\TODO{\slide{11}}
+
+%\en{spline} – lazdelė.
+
+%Idėja atėjo ne iš matematikos, bet iš inžinerijos. Kaip senovėje braižinių
+%darytojai brėždavo sudėtingas kreives: fiksuojame taškus adatėlėmis, o
+%juos sujungiame juostele (spline).
+
+\TODO{\slide{12-14}}
+
+\TODO{\slide{15}}
+
+%Nuo tokių uždavinių viskas prasidėjo 20 amžiaus viduryje.
+
+%Laivui svarbu ne tik dinamika, bet ir statika. Yra pagrindinės lygtis,
+%o kas tarp jų? Tarp jų kaip tik ir buvo taikomi splainai.
+
+\section{Tiesinis splainas}
+
+\TODO{\slide{16}}
+
+\begin{equation*}
+  s_{i}^{1}(x) = a_{i}x + b_{i}
+\end{equation*}
+
+\TODO{\slide{17}}
+\TODO{\slide{18}}
+
+%Tiesiniam splainui tolydumo reikalavimas yra tik pačiai funkcijai, bet ne
+%jos išvestinei.
+
+\TODO{\slide{19}}
+
+\begin{equation*}
+  S^{1} = 
+  \begin{cases}
+    f(x_{0}) + f(x_{0},x_{1})(x-x_{0}), & x_{0} \leq x \leq x_{1}; \\
+    f(x_{1}) + f(x_{1},x_{2})(x-x_{1}), & x_{1} \leq x \leq x_{2}; \\
+    \vdots & \vdots \\
+    f(x_{N-1}) + f(x_{N-1},x_{N})(x-x_{N-1}), & x_{N-1} \leq x \leq x_{N}; \\
+  \end{cases}
+\end{equation*}
+Tiesinis splainas sutampa su dalimis tiesine interpoliacine funkcija.
+
+%Iš sudarymo išplaukia, kad egzistuoja vienintelis sprendinys.
+
+\TODO{\slide{20}}
+
+%Kiekvienam intervalui gauname po tiesę.
+
+\TODO{\slide{21}}
+
+Tiesinio splaino trūkumas – nėra glodumo interpoliavimo mazguose
+(pirmoji išvestinė netolydi).
+
+Tolydžiosios išvestinės gaunamos taikant aukštesnės eilės splainus:
+\begin{itemize}
+  \item Vidiniuose mazguose splainas yra tolydi funkcija:
+    \begin{equation*}
+      s_{i-1}(x_{i}) = S_{i}(x_{i}), i=1,\ldots,N-1.
+    \end{equation*}
+  \item Vidiniuose mazguose išvestinė yra tolydi:
+    \begin{equation*}
+      S_{i-1}^{(k)}(x_{i}) = S_{i}^{(k)}(x_{i}), i=1,\ldots,N-1, k=1,\ldots,m-1.
+    \end{equation*}
+\end{itemize}
+
+\section{Kvadratinis splainas}
+
+\TODO{\slide{22}}
+
+Kvadratinis splainas: pirma išvestinė tolydi, bet antra išvestinė gali būti
+netolydi.
+
+\TODO{\slide{23}}
+
+\TODO{\slide{24}}
+
+Kvadratinio splaino sudarymas:
+\begin{enumerate}
+  \item Interpoliavimo ir tolydumo sąlygos ($2N$ lygčių):
+    \begin{align*}
+      S_{i}(x_{i}) &= y_{i}, & i = 0,1,\ldots,N-1,\\
+      S_{i}(x_{i+1}) &= y_{i+1} & i = 0,1,\ldots,N-1.\\
+    \end{align*}
+  \item Išvestinių tolydumo sąlygos vidiniuose taškuose ($N-1$ lygtis):
+    \begin{align*}
+      S'_{i-1}(x_{i}) &= S'_{i}(x_{i}), & i = 1,\ldots,N-1.\\
+    \end{align*}
+  \item Papildoma sąlyga (duota išvestinė viename iš kraštinių taškų):
+    \begin{equation*}
+      e_{0} = 0
+    \end{equation*}
+    Ši sąlyga vadinama natūraliąja.
+\end{enumerate}
+
+\TODO{\slide{25}}
+Gautos lygtys:
+\begin{align*}
+  \t{Iš interpoliavimo ir tolydumo sąlygos:} \\
+  a_{i}x_{i}^{2} + b_{i}x_{i} + c_{i} &= y_{i}, & i = 0,1,\ldots,N-1, \\
+  a_{i}x_{i+1}^{2} + b_{i}x_{i+1} + c_{i} &= y_{i+1}, & i = 0,1,\ldots,N-1 \\
+  \t{Iš išvestinių tolydumo sąlygos:} \\
+  2a_{i-1}x_{i} + b_{i-1} &= 2a_{i}x_{i} + b_{i}, & i = 1,\ldots,N-1 \\
+  \t{Papildoma sąlyga:} \\
+  2a_{0}x_{0} + b_{0} &= e_{0}.
+\end{align*}
+
+\TODO{\slide{26}}
+
+Lygčių sistemą galime spręsti skaidydami į blokus.
+
+\TODO{\slide{27}}
+
+Algoritmas:
+\begin{enumerate}
+  \item $e_{0}$ duotas, sprendžiame:
+    \begin{equation*}
+      \begin{pmatrix}
+        x_{0}^{2} & x_{0} & 1 \\
+        x_{1}^{2} & x_{1} & 1 \\
+        2x_{0} & 1 & 0 \\
+      \end{pmatrix}
+      \begin{pmatrix}
+        a_{0} \\
+        b_{0} \\
+        c_{0} \\
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        y_{0} \\
+        y_{1} \\
+        e_{0} \\
+      \end{pmatrix}
+    \end{equation*}
+  \item $e_{1} = 2a_{1}x_{1} + b_{1}$ iš suderinamumo sąlygų:
+    \begin{align*}
+      S'_{0}(x_{1}) &= S'_{1}(x_{1}) \\
+      \underbrace{2a_{0}x_{1} + b_{0}}_{e_{1}} &= 2a_{1}x_{1} + b_{1} \\
+    \end{align*}
+    $x_{1}$ žinom, o $a_{0}$ ir $b_{0}$ apsiskaičiavome ankstesniame
+    žingsnyje. Taigi, $e_{1}$ žinome ir galime spręsti kitą bloką:
+    \begin{equation*}
+      \begin{pmatrix}
+        x_{1}^{2} & x_{1} & 1 \\
+        x_{2}^{2} & x_{2} & 1 \\
+        2x_{1} & 1 & 0 \\
+      \end{pmatrix}
+      \begin{pmatrix}
+        a_{1} \\
+        b_{1} \\
+        c_{1} \\
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        y_{1} \\
+        y_{2} \\
+        e_{1} \\
+      \end{pmatrix}
+    \end{equation*}
+  \item Ir t.t.
+\end{enumerate}
+
+\TODO{\slide{28}}
+
+\section{Kubinis splainas}
+
+\TODO{\slide{29}}
+
+\begin{equation*}
+  S_{i}^{3}(x) = a_{i}x^{3} + b_{i}x^{2} + c_{i}x + d_{i},
+    x_{i} \leq x \leq x_{i+1}.
+\end{equation*}
+
+Kaip ir kvadratiniam splainui gaunama $4N$ koeficientų ir $4N$ lygčių
+sistema.
+
+\begin{itemize}
+  \item Vidiniuose mazguose tolydumas.
+  \item Intervalo galai fiksuoti.
+  \item Vidiniuose mazguose išvestinės tolydžios.
+  \item Papildomos sąlygos antrosios eilės išvestinėms intervalo galuose.
+\end{itemize}
+
+%Viskas yra analogiškai, tik funkcija yra kubinė parabolė.
+
+%Intervalo galai fiksuoti – galima interpretuoti gana įvariai. Mes
+%užfiksuojame duodami papildomas sąlygas.
+
+\TODO{\slide{30}}
+\TODO{\slide{31}}
+
+%Reikalaujame, kad vidiniuose taškuose būtų tolydu. Mums trūksta
+%dviejų lygčių, įsivedama natūraliųjų kraštinių sąlygas.
+%\note{Kubinis splainas, gali turėti ir kitokias papildomas sąlygas,
+%nebūtinai natūraliasias.}
+
+\TODO{\slide{32}}
+\TODO{\slide{33}}
+
+Pažymėkime $g_{i} = S''_{i}(x_{i})$. Susirandame tiesinį splainą ir
+jį integruojame du kartus. Norėdami išspręsti lygtį įsistatome
+kitą žinomą tašką. Tikslas: surasti konstruktyvų algoritmą, kaip
+apskaičiuoti $g$.
+
+\TODO{\slide{34}}
+
+Sugrupavus $g$ atžvilgiu, gauname triįstrižainę lygčių sistemą.
+
+\TODO{\slide{35}}
+
+Triįstrižainė lygčių sistema $g$ atžvilgiu:
+\begin{equation*}
+  h_{i-1}g_{i-1} + 2(h_{i-1}+h_{i})g_{i} + h_{i}g_{i+1}
+    = 6\left(
+        \frac{y_{i+1} - y_{i}}{h_{i}}
+        - \frac{y_{i}-y_{i-1}}{h_{i-1}} \right),
+\end{equation*}
+čia:
+\begin{align*}
+  i &= 1,\ldots,N-1, \\
+  g_{0} &= 0, \\
+  g_{N} &= 0, \\
+  h_{i} &= x_{i+1} - x_{i}, \\
+  f_{i} &= \frac{y_{i+1} - y_{i}}{h_{i}}. \\
+\end{align*}
+
+\TODO{\slide{36}}
+
+Nereikia tikrinti triįstrižainės matricos konvergavimo sąlygos, nes
+turime $2 > 1$ (tai yra, ji visada galioja).
+
+\TODO{\slide{37}}
+
+Kubinio splaino lygtis:
+\begin{equation*}
+  S^{3}_{i}(x)
+    = y_{i}
+    + e_{i}(x-x_{i})
+    + G_{i}(x-x_{i})^{2}
+    + H_{i}(x-x_{i})^{3},
+    i = 0,1,\ldots,N-1.
+\end{equation*}
+Čia:
+\begin{align*}
+  e_{i}
+    &= \frac{y_{i+1}-y_{i}}{h_{i}}
+    - g_{i+1}\frac{h_{i}}{6}
+    - g_{i}\frac{h_{i}}{3}, \\
+  G_{i} &= \frac{g_{i}}{2}, \\
+  H_{i} &= \frac{g_{i+1} - g_{i}}{6h_{i}}. \\
+\end{align*}
+
+
+\TODO{\slide{38}}
+\begin{prop}[Kubinio splaino paklaida]
+  Jei funkcija $y(x) \in C^{4}\left[ a; b \right]$, tai kubinio splaino
+  $S^{3}(x)$ paklaida ir jo išvestinių ${S^{3}}'(x)$, ${S^{3}}''(x)$ paklaida
+  įvertinama nelygybe:
+  \begin{equation*}
+    |y^{(k)}(x) - S^{3(k)}(x)|
+      \leq M_{4}h^{2-k}(h^{2}
+      + \max(|y''(a) - {S^{3}}''(a)|, |y''(b)-{S^{3}}''(b)|)),
+    k = 0,1,2
+  \end{equation*}
+  \note{Kai $k=0$, tai vertiname pačios funkcijos paklaidą. Kai $k=1$, tai
+  – pirmos išvestinės.}
+\end{prop}
+%Jeigu išvestines žinome tiksliai, tai kažkur bus 0. Kai tiksliai
+%aproksimuojame taškus, tik tada tiksliai galime aproksimuoti. Kitu
+%atveju, mums paklaida maišo.
+Kai $y''(a)={S^{3}}''(a)$, $y''(b)={S^{3}}''(b)$, tai paklaidą galima vertinti:
+\begin{equation*}
+  |y^{(k)}(x) - S^{3(k)}(x)| \leq M_{4}h^{4-k}, k = 0, 1, 2
+\end{equation*}
+Kai $y''(a) \neq {S^{3}}''(a)$, $y''(b) \neq {S^{3}}''(b)$, tai paklaidą
+galima vertinti:
+\begin{equation*}
+  |y^{(k)}(x) - S^{3(k)}(x)| \leq M_{4}h^{2-k}, k = 0, 1, 2
+\end{equation*}
+
+\TODO{\slide{39-42}}
+\TODO{\slide{43-47}}
+
+%Išlenkimai priklauso nuo kraštinių sąlygų.
+
+\section{Kraštinės sąlygos}
+
+\TODO{\slide{48-50}}
+\TODO{\slide{51}}
+
+%Splainas ne visada išlaiko monotoniškumą.
+
+\section{Splainų taikymai}
+
+\TODO{\slide{52}}
+\TODO{\slide{53}}
+
+Renkantis metodą reikia atsižvelgti į specifiką. Pavyzdžiui, medicinoje
+yra reikalavimas neprikurti to ko ten nėra, todėl dažnai yra naudojamas
+artimiausio kaimyno interpoliavimas.
+
+\TODO{\slide{54}}
+
+Su daugiamačiu interpoliavimu yra problema kaip atvaizduoti duomenis.
+Pavyzdžiui, jei turime kambario temperatūros funkciją. Galimas
+variantas yra žaisti spalvomis.
+
+\TODO{\slide{55}}
+\TODO{\slide{56}}
+
+%Duomenys yra tikri: kiaulės kraujagyslių tamprumo tikrinimas. Tempiame
+%kraujagyslę ir tikriname kada plyš.
+
+%\section{Splainų interpoliavimas}
+%\cite[170-173]{textbook}
+%\section{12p}
+%\cite[171]{textbook}
+%\section{Kubinis splainas}
+%\cite[174-175]{textbook}
