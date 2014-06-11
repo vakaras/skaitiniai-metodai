@@ -1,0 +1,271 @@
+\Chapter{Netiesinių lygčių sistemų sprendimas}
+
+% 2014-03-18
+
+\TODO{\slide{2}}
+
+%Šiandien šiek tiek dar per anksti kalbėti apie netiesinių lygčių
+%sprendimą, nes jos yra sprendžiamos iteraciniais metodais, o mes dar
+%neturėjom tiesinių lygčių sprendimo iteraciniais metodais.
+
+\section{Vektorių ir matricų normos}
+
+\TODO{\slide{3}}
+
+\TODO{\slide{4}}
+
+\begin{defn}[Vektoriaus norma]
+  Vektoriaus $\vecx$ norma (žymima $||\vecx||$) vadinamas skaičius
+  tenkinantis tokias savybes:
+  \begin{enumerate}
+    \item $||\vecx|| > 0$, jei $\vecx \neq 0$, o nulinio vektoriaus
+      norma $||\veczero|| = 0$.
+    \item $||\alpha \vecx|| = |\alpha|\cdot||\vecx||$, čia $\alpha$ yra
+      skaičius.
+    \item $||\vecx + \vecy|| \leq ||\vecx|| + ||\vecy||$ bet kuriems
+      $\vecx$ ir $\vecy$.
+  \end{enumerate}
+\end{defn}
+
+%Galime sugalvoti bet kokią normą, svarbu tik kad ji tenkintų normos
+%reikalavimus. Ypač naudinga norint ką nors įrodyti.
+
+\TODO{\slide{5}}
+
+Dažniausiai taikomos vektoriaus $\vecx$ normos:
+\begin{enumerate}
+  \item Modulių sumos:
+    \begin{equation*}
+      ||\vecx||_{1} = \sum_{k=1}^{N}|x_{k}|.
+    \end{equation*}
+  \item Kvadratinė:
+    \begin{equation*}
+      ||\vecx||_{2} = \sqrt{\sum_{k=1}^{N}|x_{k}|^{2}}
+    \end{equation*}
+  \item Maksimumo:
+    \begin{equation*}
+      ||\vecx||_{\infty} = \max_{1 \leq k \leq N} |x_{k}|.
+    \end{equation*}
+\end{enumerate}
+
+%Pavyzdys: koks atstumas tarp Naugarduko ir Baltupių. Klausimas: kokią normą
+%naudojame (oro kelią, visuomeninį transportą, Manhetano atstumas).
+
+\TODO{\slide{6}}
+
+Minėtos vektoriaus normos yra $p$-normos, apibrėžtos kaip
+\begin{equation*}
+  ||\vecx||_{p} = \left( \sum_{k=1}^{N}|x_{k}|^{p} \right)^{\frac{1}{p}}
+\end{equation*}
+atskirieji atvejai.
+
+\TODO{\slide{7}}
+
+\begin{defn}[Matricos norma]
+  Matricos $\matrixa$ norma (žymima $||\matrixa||$) vadinamas skaičius
+  turintis šias savybes:
+  \begin{enumerate}
+    \item $||\matrixa|| > 0$, jei $\matrixa \neq 0$, o nulinės matricos
+      norma $||\matrixzero|| = 0$.
+    \item $||\alpha\matrixa|| = |\alpha|\cdot||\matrixa||$, čia $\alpha$
+      yra skaičius.
+    \item $||\matrixa + \matrixb|| \leq ||\matrixa|| + ||\matrixb||$
+      bet kurioms $\matrixa$ ir $\matrixb$.
+    \item $||\matrixa\matrixb|| \leq ||\matrixa|| \cdot ||\matrixb||$
+      bet kurioms suderintoms $\matrixa$ ir $\matrixb$.
+  \end{enumerate}
+\end{defn}
+
+\TODO{\slide{8}}
+\begin{defn}[Suderintos normos]
+  Vektoriaus $\vecx$ norma yra suderinta su matricos $\matrixa$ norma
+  jei:
+  \begin{equation*}
+    ||\matrixa\vecx|| \leq ||\matrixa|| \cdot ||\vecx||.
+  \end{equation*}
+\end{defn}
+
+Normos yra suderintos, kai matricos $\matrixa$ norma yra apibrėžiama
+panaudojant vektoriaus normą:
+\begin{equation*}
+  ||\matrixa|| = \max_{x \neq 0} \frac{||\matrixa\vecx||}{||\vecx||}.
+\end{equation*}
+Norma aprašo didžiausią vektoriaus pailgėjimą, atvaizduojant operatoriumi
+$\matrixa$.
+
+\TODO{\slide{9}}
+Matricų normos (suderintos su vektorių normomis):
+\begin{enumerate}
+  \item Stulpelių modulių suma ($p=1$):
+    \begin{equation*}
+      ||\matrixa||_{1} = \max_{1 \leq j \leq N} \sum_{i=1}^{N} |a_{ij}|.
+    \end{equation*}
+  \item Kvadratinė ($p=2$):
+    \begin{equation*}
+      ||\matrixa||_{2}
+        = \sqrt{\max_{1 \neq i \neq N} |\lambda_{i}(\matrixa^{T}\matrixa)|}.
+    \end{equation*}
+  \item Eilučių modulių suma ($p=\infty$):
+    \begin{equation*}
+      ||\matrixa||_{\infty} = \max_{1 \leq i \leq N} \sum_{j=1}^{N}|a_{ij}|.
+    \end{equation*}
+\end{enumerate}
+
+\TODO{\slide{10-11}}
+\TODO{\slide{12}}
+
+%$A^{T}A$ – yra simetrinė matrica.
+
+%Tikrinės reikšmės:
+%$Ax = \lambda x$, čia x – tikrinis vektorius, o $\lambda$ – tikrinė reikšmė.
+%$x \neq 0$, $\lambda$ – skaičius.
+
+%\TODO{\eng{eigenvalue}, \eng{eigenvector} Pasižiūrėti TASM paskaitas.}
+
+%$(e_{i}, e_{j}) = 0, i \neq j$ 
+%$||e|| = (e_{i}, e_{i}) = 1$
+
+
+%Normų žymėjimas: $|| \t{kažkas}}||_{\t{normos indeksas}}$. Jei indekso nėra,
+%tai kalbama apie kvadratines normas.
+
+\TODO{\slide{13}}
+\TODO{\slide{14}}
+
+%$(Ax, Ax)$ – skaliarinė santauga.
+
+%Tikrinės reikšmės – labai dažnai gali būti naudojamos
+%charakterizuoti, parodyti kas yra gerai, o kas blogai.
+
+\TODO{\slide{15}}
+
+\begin{defn}[Didesnė simetrinė matrica]
+  Simetrinė matrica $\matrixa$ yra didesnė arba lygi simetrinei matricai
+  $\matrixb$ ($\matrixa \geq \matrixb$), jei kiekvienam vektoriui
+  $\vecx$ galioja skaliarinių sandaugų nelygybė:
+  \begin{equation*}
+    (\matrixa\vecx, \vecx) \geq (\matrixb\vecx, \vecx).
+  \end{equation*}
+\end{defn}
+
+\section{Netiesinių lygčių sistemų sprendimas}
+
+\TODO{\slide{16}}
+
+%Reikia apjungti žinias iš tiesinių lygčių sistemų ir netiesinių
+%lygčių sprendimo.
+
+\TODO{\slide{17}}
+
+\TODO{\slide{18}}
+
+Skiriasi nuo vienmačio atveju tik tuo, kad dirbame su vektoriais.
+Paprastųjų iteracijų metodas \en{Fixed-point method}:
+\begin{equation*}
+  f(\vecx) = \veczero \iff \vecx = \vecS(\vecx)
+\end{equation*}
+Žinomas $k$-asis vektoriaus $\vecx$ artinys $\vecx^{k}$, iš to gauname
+iteracinį procesą:
+\begin{equation*}
+  x^{k+1} = \vecS(x^{k})
+\end{equation*}
+
+\TODO{\slide{19}}
+
+\begin{defn}[Spūdinė funkcija]
+  Funkcija $\vecS(\vecx)$ vadinasi spūdine funkcija $n$-mačių vektorių
+  aibėje $V$, jei egzistuoja toks skaičius $q \in \left( 0; 1 \right)$, kad
+  \begin{equation*}
+    \forall \vecx, \vecy \in V :
+      ||\vecS(\vecx) - \vecS(\vecx)|| \leq q||\vecx - \vecy||.
+  \end{equation*}
+  \note{Spūdinė funkcija yra tolydžioji.}
+\end{defn}
+
+%Mums reikia, kad iteracinis procesas konverguotų.
+
+%Pavyzdys: jei intervalas būtų jau nuo 1 iki 10, tai funkcija $S(x) = x^{3}$
+%jau nebebūtų spūdinė.
+
+\TODO{\slide{20}}
+
+\begin{prop}[Paprastųjų iteracijų metodo konvergavimo sąlygos]
+  Sakykime, kad vektoriaus $\veca$ aplinkoje
+  $\Omega_{\delta}(\veca) = \left\{ \vecx :
+    || \vecx - \veca || \leq \delta \right\}$
+  yra apibrėžta spūdinė funkcija $\vecS(\vecx)$ ir
+  $||\vecS(\veca) - \veca|| \leq (1 - q)\delta$.
+  Tada aplinkoje $\Omega_{\delta}(\veca)$:
+  \begin{enumerate}
+    \item Yra vienintelis vektorinės lygties $\vecx = \vecS(\vecx)$ sprendinys
+      $\vecx*$.
+    \item Paprastųjų iteracijų seka $\vecx^{k+1} = \vecS(\vecx^{k})$ su bet
+      kokiu pradiniu artiniu $\vecx^{0} \in \Omega_{\delta}(\veca)$ konverguoja
+      į šį sprendinį.
+    \item $k$-ojo artinio paklaida įvertinama nelygybe:
+      \begin{equation*}
+        ||\vecS(\vecx^{k}) - \vecS(\vecx*)||
+          \leq \frac{q^{k}}{1-q}||\vecS(\vecx^{0}) - \vecx^{0}||.
+      \end{equation*}
+  \end{enumerate}
+\end{prop}
+
+%$\delta$ – spindulys $n$-matėje erdvėje.
+
+%$q$ yra mažas skaičius, nuo 0 iki 1.
+
+%$a$ yra pagalbinis vektorius.
+
+\TODO{\slide{21-22}}
+
+\TODO{\slide{23}}
+
+Paprastųjų iteracijų metodo privalumai:
+\begin{itemize}
+  \item Nereikia skaičiuoti dalinių išvestinių.
+  \item Tiesinis konvergavimo greitis.
+  \item Netiesinių lygčių sistema perrašoma nevienareikšmiškai:
+    \begin{equation*}
+      f(\vecx) = 0 \iff \vecx = \vecS(\vecx).
+    \end{equation*}
+    Svarbu, kad:
+    \begin{itemize}
+      \item $\vecS(\vecx)$ tenkintų konvergavimo sąlygas.
+      \item Konstanta $q$ būtų kuo mažesnė.
+    \end{itemize}
+\end{itemize}
+
+%\section{Paprastųjų iteracijų metodas}
+
+\TODO{\slide{24}}
+
+\begin{defn}[Išreikštinis iteracinis metodas]
+  Išreikštinis iteracinis metodas skirtas spręsti lygtį $f(\vecx) = 0$:
+  \begin{equation*}
+    \frac{\vecx^{k+1} - \vecx^{k}}{\tau} = f(\vecx^{k}),
+  \end{equation*}
+  čia $\tau$ yra iteracinis parametras, parenkamas taip, kad iteracinis
+  procesas konverguotų greičiausiai. Šiuo atveju iteracinio metodo
+  funkcija būtų:
+  \begin{equation*}
+    \vecS(\vecx) = \vecx + \tau f(\vecx).
+  \end{equation*}
+\end{defn}
+
+\begin{defn}[Pikaro metodas]
+  Pikaro metodas skirtas spręsti lygtį $f(\vecx) = 0$. Tegul
+  \begin{equation*}
+    f(\vecx) = \matrixa \vecx + G(\vecx),
+  \end{equation*}
+  čia $\matrixa$ yra $n$-osios eilės matrica, tiesinė funkcijos dalis, o
+  $G(\vecx)$ yra netiesinė dalis. Iteracinis procesas:
+  \begin{equation*}
+    \matrixa \vecx^{k+1} + G(\vecx^{k}) = 0
+  \end{equation*}
+  konverguoja, jei $\vecS(\vecx) = \matrixa^{-1}G(\vecx)$ yra spūdinė
+  funkcija.
+\end{defn}
+
+\section{Niutono metodas}
+
+\TODO{Sustota: 6BP\_SM8.pdf, 25 skaidrė; konspektai/6\_paskaita.tex}
