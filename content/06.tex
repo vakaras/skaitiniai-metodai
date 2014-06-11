@@ -1,0 +1,180 @@
+\Chapter{Mažiausių kvadratų metodas}
+
+% 2014-03-18
+
+% K.Plukas Skaičiavimo metodai ir algoritmai Kaunas Naujasis lankas, 2001.
+
+\TODO{\slide{2-4}}
+
+Interpoliavimas tinkamas, kai taškai yra žinomi pakankamai tiksliai (5
+reikšminiai skaitmenys ir daugiau). Aproksimavimas mažiausių
+kvadratų metodu tinka, kai pradinių duomenų tikslumas yra 2-3
+reikšminiai skaitmenys.
+
+\TODO{\slide{5}}
+
+Tikslas: nustatyti funkciją $y=f(x)$ (parinkti leidžiamų funkcijų klasę).
+
+Dėl matavimo paklaidos, atsiranda papildomas dėmuo $e_{k}$ (matavimo paklaida):
+\begin{equation*}
+  f(x_{k}) = y_{k} + e_{k},
+\end{equation*}
+čia:
+\begin{itemize}
+  \item $y_{k}$ – tiksli reikšmė.
+  \item $e_{k}$ – matavimo paklaida.
+\end{itemize}
+
+Norėdami rasti geriausią artinį (pavyzdžiui, daugianarį), kuris eina arti
+taškų, bet ne būtinai per juos, turime analizuoti paklaidas (netiktį):
+\begin{equation*}
+  e_{k} = f(x_{k}) - y_{k}, k=1,\ldots,N.
+\end{equation*}
+
+\TODO{\slide{6}}
+
+\section{Paklaidų analizė}
+
+\TODO{\slide{7}}
+Paklaidos normos:
+\begin{enumerate}
+  \item Maksimumo (jei yra vienas blogas taškas, tai jis ir nustato
+    paklaidos reikšmę):
+    \begin{equation*}
+      E_{\infty}(f) = \max_{1 \leq k \leq N} |f(x_{k} - y_{k})|
+    \end{equation*}
+  \item Vidurkinė (suvidurkinta paklaida, dažnai naudojama dėl savo
+    paprastumo):
+    \begin{equation*}
+      E_{1}(f) = \frac{1}{N}\sum_{k=1}^{N}|f(x_{k}) - y_{k}|
+    \end{equation*}
+  \item Kvadratinė (dažnai naudojama statistikoje):
+    \begin{equation*}
+      E_{2}(f) = \sqrt{\frac{1}{N}\sum_{k=1}^{N}|f(x_{k})-y_{k}|^{2}}
+    \end{equation*}
+\end{enumerate}
+
+\TODO{\slide{8}}
+
+\TODO{\slide{9}}
+
+Matų lyginti tarpusavyje prasmės nėra, nes kol kas neturim konteksto.
+
+Tikėtina, kad kiekvienam paklaidos kriterijui bus atskiros geriausios
+tiesės.
+
+\section{Tiesiniai modeliai}
+
+\TODO{\slide{10}}
+
+\begin{prop}[Tiesinis modelis]
+  Tegul žinomi taškai $(x_{1};y_{1}), (x_{2};y_{2}),\ldots,(x_{N};y_{N})$.
+  \begin{equation*}
+    y_{i} = a_{1}\varphi_{1}(x_{i}) + \cdots a_{m}\varphi_{m}(x_{i}) + e
+    = \sum_{j=1}^{m}a_{j}\varphi_{j}(x_{i}).
+  \end{equation*}
+  čia:
+  \begin{itemize}
+    \item $\varphi_{1}(x),\ldots,\varphi_{m}(x)$ – duotosios
+      funkcijos. Jos gali būti bet kokios. Statistikai paprastai naudoja
+      daugianarius.
+    \item Koeficientai $a_{1},\ldots,a_{m}$ – nežinomi parametrai, kuriuos
+      reikia nustatyti. Jie įeina tik tiesiškai.
+  \end{itemize}
+\end{prop}
+
+\TODO{\slide{11}}
+
+Bendroji lygtis matriciniu pavidalu:
+\begin{equation*}
+  y = \Phi a + e
+\end{equation*}
+
+Netiktis yra skirtumas tarp stebėjimo vektoriaus ir apskaičiuotos funkcijos
+reikšmės:
+\begin{equation*}
+  e = y - \Phi a
+\end{equation*}
+
+\section{Mažiausių kvadratų metodas}
+
+\TODO{\slide{12}}
+
+Idėja: parinkti parametrus $a_{1},\ldots,a_{m}$ taip, kad netiktis
+\begin{equation*}
+  e = y - \Phi a
+\end{equation*}
+būtų mažiausia vienoje iš normų. Kitaip tariant:
+\begin{equation*}
+  \min _{a_{j}} \left(
+    \sum_{i=1}^{N}|y_{i} - \sum_{j=0}^{m} a_{j}\varphi_{j}(x_{i})
+  \right)^{2}
+\end{equation*}
+
+\TODO{\slide{13}}
+
+%Visos paklaidos gali būti tik vertikaliai. (Metai juk tikrai teisingai.)
+
+\TODO{\slide{14}}
+
+Minimizavimo uždavinys susiveda į tiesinės lygčių sistemos sprendimą $a$
+atžvilgiu:
+\begin{equation*}
+  \Phi^{T} \Phi a = \Phi^{T} y
+\end{equation*}
+
+\TODO{\slide{15}}
+
+Kai bandoma aproksimuoti tiese (tiesinė regresija
+$f(x) = a_{1} + a_{2}x$), tai naudojama duomenų matrica:
+\begin{equation*}
+  \Phi =
+  \begin{pmatrix}
+    1 & x_{1} \\
+    2 & x_{2} \\
+    \vdots & \vdots \\
+    1 & x_{N} \\
+  \end{pmatrix}
+\end{equation*}
+
+\TODO{\slide{16-17}}
+
+\TODO{\slide{18}}
+
+Kai bandoma aproksimuoti parabole (kvadratinė regresija
+$f(x) = a_{1} + a_{2}x + a_{3}x^{2}$), tai naudojama duomenų matrica:
+\begin{equation*}
+  \Phi =
+  \begin{pmatrix}
+    1 & x_{1} & x_{1}^{2} \\
+    1 & x_{2} & x_{2}^{2} \\
+    \vdots & \vdots & \vdots \\
+    1 & x_{N} & x_{N}^{2} \\
+  \end{pmatrix} 
+\end{equation*}
+
+\TODO{\slide{19-23}}
+
+\TODO{\slide{24}}
+
+%Problema: aproksimavimo funkciją reikią atspėti.
+
+\TODO{\slide{25}}
+
+Kai norime aproksimuoti funkciją su netiesiniais koeficientais, galime
+suvesti (linearizuoti) į tiesinį.
+
+\TODO{\slide{26}}
+
+Pavyzdžiui, exponentinę funkciją $y = \alpha_{1}e^{\beta_{1}x}$ galime
+linearizuoti naudodami logaritminę koordinačių sistemą $(x_{i}; \ln y_{i})$.
+
+Laipsninę funkciją $y = \alpha_{2}x^{\beta_{2}}$ galime linearizuoti
+naudodami koordinačių sistemą $(\lg x_{i}, \lg y_{i})$.
+
+\TODO{\slide{27}}
+
+%Paklaidų lyginti tiesiogiai šiuo atveju negalima, nes skalės yra skirtingos
+%(tiesinė ir logaritminė).
+
+\TODO{\slide{28}}
